@@ -9,9 +9,9 @@ export function Sidebar({ isOpen }: { isOpen: boolean }) {
   const navItems = [
     { name: "Tableau de bord", icon: <BookOpen size={24} />, href: "/dashboard" },
     { name: "QCMs", icon: <FileText size={24} />, href: "/dashboard/qcm" },
-    { name: "Progression", icon: <BarChart2 size={24} />, href: "#" },
+    { name: "Progression", icon: <BarChart2 size={24} />, href: "/dashboard/progression" },
     { name: "Profil", icon: <User size={24} />, href: "/dashboard/profile" },
-    { name: "Paramètres", icon: <Settings size={24} />, href: "#" },
+    { name: "Paramètres", icon: <Settings size={24} />, href: "/dashboard/parametres" },
   ];
 
   return (
