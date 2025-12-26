@@ -195,7 +195,7 @@ export default function ProfilePage() {
 
   const handlePreferencesChange = async (key: string, value: string | boolean) => {
     const updated = { ...preferences, [key]: value };
-    setPreferences(updated as any);
+    setPreferences(updated as typeof preferences);
 
     // Save to database
     try {
