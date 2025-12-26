@@ -64,8 +64,6 @@ export default function ProgressionPage() {
     );
   }
 
-
-
   return (
     <DashboardLayout>
       <div className="space-y-6 p-4 md:p-6 bg-gray-50 min-h-screen">
@@ -159,27 +157,28 @@ export default function ProgressionPage() {
               <LineChartIcon className="w-5 h-5 text-teal-600" />
               Historique des scores
             </h2>
-            <ResponsiveContainer width="100%" height={300}>
-              <LineChart data={data.scoreHistory}>
-                <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
-                <XAxis dataKey="date" stroke="#9ca3af" />
-                <YAxis stroke="#9ca3af" />
-                <Tooltip 
-                  contentStyle={{ backgroundColor: "#fff", border: "1px solid #e5e7eb", borderRadius: "8px" }}
-                  cursor={{ stroke: "#14b8a6", strokeWidth: 2 }}
-                />
-                <Legend />
-                <Line 
-                  type="monotone" 
-                  dataKey="score" 
-                  stroke="#14b8a6" 
-                  strokeWidth={2}
-                  dot={{ fill: "#14b8a6", r: 4 }}
-                  activeDot={{ r: 6 }}
-                  name="Score (%)"
-                />
-              </LineChart>
-            </ResponsiveContainer>
+            <div className="h-[300px] w-full">
+              <ResponsiveContainer width="100%" height="100%">
+                <LineChart data={data.scoreHistory}>
+                  <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
+                  <XAxis dataKey="date" stroke="#9ca3af" />
+                  <YAxis stroke="#9ca3af" />
+                  <Tooltip 
+                    contentStyle={{ backgroundColor: "#fff", border: "1px solid #e5e7eb", borderRadius: "8px" }}
+                  />
+                  <Legend />
+                  <Line 
+                    type="monotone" 
+                    dataKey="score" 
+                    stroke="#14b8a6" 
+                    strokeWidth={2}
+                    dot={{ fill: "#14b8a6", r: 4 }}
+                    activeDot={{ r: 6 }}
+                    name="Score (%)"
+                  />
+                </LineChart>
+              </ResponsiveContainer>
+            </div>
           </div>
 
           {/* Difficulty Distribution */}
@@ -188,19 +187,21 @@ export default function ProgressionPage() {
               <BarChart3 className="w-5 h-5 text-blue-600" />
               Performance par difficulté
             </h2>
-            <ResponsiveContainer width="100%" height={300}>
-              <BarChart data={data.difficultyStats}>
-                <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
-                <XAxis dataKey="difficulty" stroke="#9ca3af" />
-                <YAxis stroke="#9ca3af" />
-                <Tooltip 
-                  contentStyle={{ backgroundColor: "#fff", border: "1px solid #e5e7eb", borderRadius: "8px" }}
-                />
-                <Legend />
-                <Bar dataKey="avgScore" fill="#14b8a6" name="Score moyen (%)" radius={[8, 8, 0, 0]} />
-                <Bar dataKey="attempts" fill="#06b6d4" name="Tentatives" radius={[8, 8, 0, 0]} />
-              </BarChart>
-            </ResponsiveContainer>
+            <div className="h-[300px] w-full">
+              <ResponsiveContainer width="100%" height="100%">
+                <BarChart data={data.difficultyStats}>
+                  <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
+                  <XAxis dataKey="difficulty" stroke="#9ca3af" />
+                  <YAxis stroke="#9ca3af" />
+                  <Tooltip 
+                    contentStyle={{ backgroundColor: "#fff", border: "1px solid #e5e7eb", borderRadius: "8px" }}
+                  />
+                  <Legend />
+                  <Bar dataKey="avgScore" fill="#14b8a6" name="Score moyen (%)" radius={[8, 8, 0, 0]} />
+                  <Bar dataKey="attempts" fill="#06b6d4" name="Tentatives" radius={[8, 8, 0, 0]} />
+                </BarChart>
+              </ResponsiveContainer>
+            </div>
           </div>
         </div>
 

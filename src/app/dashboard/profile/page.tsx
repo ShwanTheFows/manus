@@ -1,13 +1,14 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Mail, MapPin, Calendar, BookOpen, Award, Clock, Edit2, Camera, Zap, TrendingUp, Upload } from "lucide-react";
+import { Mail, MapPin, Calendar, BookOpen, Award, Clock, Camera, Zap, Upload } from "lucide-react";
 import DashboardLayout from "@/src/app/components/layouts/DashboardLayout";
 import { ProfileEditModal } from "@/src/app/components/ProfileEditModal";
 import { PasswordChangeModal } from "@/src/app/components/PasswordChangeModal";
 import { DeleteAccountModal } from "@/src/app/components/DeleteAccountModal";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 interface UserData {
   firstname: string;
@@ -192,9 +193,9 @@ export default function ProfilePage() {
     }
   };
 
-  const handlePreferencesChange = async (key: string, value: boolean) => {
+  const handlePreferencesChange = async (key: string, value: string | boolean) => {
     const updated = { ...preferences, [key]: value };
-    setPreferences(updated);
+    setPreferences(updated as any);
 
     // Save to database
     try {
@@ -203,9 +204,9 @@ export default function ProfilePage() {
         qcmReminders?: boolean;
         shareStatistics?: boolean;
       } = {};
-      if (key === "emailNotifications") payload.emailNotifications = value;
-      if (key === "qcmReminders") payload.qcmReminders = value;
-      if (key === "shareStatistics") payload.shareStatistics = value;
+      if (key === "emailNotifications") payload.emailNotifications = value as boolean;
+      if (key === "qcmReminders") payload.qcmReminders = value as boolean;
+      if (key === "shareStatistics") payload.shareStatistics = value as boolean;
 
       const response = await fetch("/api/user/preferences", {
         method: "PUT",
@@ -240,10 +241,11 @@ export default function ProfilePage() {
           {/* Banner Image */}
           <div className="relative h-32 bg-gradient-to-r from-teal-500 to-blue-500 group">
             {userData.bannerImage && (
-              <img
+              <Image
                 src={userData.bannerImage}
                 alt="Banner"
-                className="w-full h-full object-cover"
+                fill
+                className="object-cover"
               />
             )}
             <label className="absolute inset-0 flex items-center justify-center bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer">
@@ -268,12 +270,13 @@ export default function ProfilePage() {
               {/* Profile Avatar and Info */}
               <div className="flex items-end gap-4">
                 <div className="relative group">
-                  <div className="w-32 h-32 rounded-2xl bg-gradient-to-br from-teal-400 to-blue-500 border-4 border-white shadow-lg flex items-center justify-center overflow-hidden">
+                  <div className="w-32 h-32 rounded-2xl bg-gradient-to-br from-teal-400 to-blue-500 border-4 border-white shadow-lg flex items-center justify-center overflow-hidden relative">
                     {userData.profilePicture ? (
-                      <img
+                      <Image
                         src={userData.profilePicture}
                         alt="Profile"
-                        className="w-full h-full object-cover"
+                        fill
+                        className="object-cover"
                       />
                     ) : (
                       <span className="text-5xl font-bold text-white">
@@ -300,108 +303,83 @@ export default function ProfilePage() {
                   </label>
                 </div>
                 <div className="pb-2">
-                  <h1 className="text-3xl font-bold text-gray-800">
+                  <h1 className="text-2xl font-bold text-gray-800">
                     {userData.firstname} {userData.lastname}
                   </h1>
-                  <p className="text-teal-600 font-medium text-lg">
-                    {userData.academicyear || "Année Avancée"}
-                  </p>
+                  <div className="flex flex-wrap items-center gap-4 mt-1 text-gray-600">
+                    <div className="flex items-center gap-1.5">
+                      <Mail className="w-4 h-4" />
+                      <span className="text-sm">{userData.email}</span>
+                    </div>
+                    <div className="flex items-center gap-1.5">
+                      <MapPin className="w-4 h-4" />
+                      <span className="text-sm">{userData.city || "Non spécifiée"}</span>
+                    </div>
+                    <div className="flex items-center gap-1.5">
+                      <Calendar className="w-4 h-4" />
+                      <span className="text-sm">{userData.academicyear || "Non spécifiée"}</span>
+                    </div>
+                  </div>
                 </div>
               </div>
-
-              {/* Edit Profile Button */}
               <button
                 onClick={() => setIsEditModalOpen(true)}
-                className="flex items-center gap-2 px-6 py-3 bg-white text-teal-600 rounded-xl font-semibold hover:bg-teal-50 transition-all shadow-sm border border-teal-100"
+                className="flex items-center gap-2 px-4 py-2 bg-white text-teal-600 rounded-lg font-semibold shadow-sm border border-teal-100 hover:bg-teal-50 transition-all mb-2"
               >
-                <Edit2 className="w-5 h-5" />
                 Modifier le profil
               </button>
-            </div>
-
-            {/* Quick Info */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-8">
-              <div className="flex items-center gap-3 text-gray-700">
-                <Mail className="w-5 h-5 text-teal-600" />
-                <div>
-                  <p className="text-xs text-gray-500">Email</p>
-                  <p className="font-medium text-sm text-gray-900">{userData.email}</p>
-                </div>
-              </div>
-              <div className="flex items-center gap-3 text-gray-700">
-                <MapPin className="w-5 h-5 text-teal-600" />
-                <div>
-                  <p className="text-xs text-gray-500">Localisation</p>
-                  <p className="font-medium text-sm text-gray-900">{userData.city || "Non spécifiée"}</p>
-                </div>
-              </div>
-              <div className="flex items-center gap-3 text-gray-700">
-                <Calendar className="w-5 h-5 text-teal-600" />
-                <div>
-                  <p className="text-xs text-gray-500">Membre depuis</p>
-                  <p className="font-medium text-sm text-gray-900">Décembre 2024</p>
-                </div>
-              </div>
             </div>
           </div>
         </div>
 
-        {/* Statistics Grid */}
+        {/* Stats Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
-          {/* Total QCMs Completed */}
-          <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-all">
+          <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
             <div className="flex items-center justify-between mb-4">
               <div className="p-3 bg-teal-50 rounded-lg">
                 <BookOpen className="w-6 h-6 text-teal-600" />
               </div>
               <span className="text-xs font-semibold text-teal-600 bg-teal-50 px-2 py-1 rounded-full">
-                +{userStats.thisWeekAttempts} cette semaine
+                Total
               </span>
             </div>
             <p className="text-3xl font-bold text-gray-800">{userStats.totalQcmsCompleted}</p>
-            <p className="text-sm text-gray-500 mt-1">QCM complétés</p>
+            <p className="text-sm text-gray-600 mt-2">QCMs complétés</p>
           </div>
 
-          {/* Average Score */}
-          <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-all">
+          <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
             <div className="flex items-center justify-between mb-4">
               <div className="p-3 bg-blue-50 rounded-lg">
-                <TrendingUp className="w-6 h-6 text-blue-600" />
+                <Award className="w-6 h-6 text-blue-600" />
               </div>
-              <span className={`text-xs font-semibold px-2 py-1 rounded-full ${
-                userStats.scoreImprovement >= 0
-                  ? "text-blue-600 bg-blue-50"
-                  : "text-red-600 bg-red-50"
-              }`}>
-                {userStats.scoreImprovement >= 0 ? "+" : ""}{userStats.scoreImprovement}% vs semaine dernière
+              <span className="text-xs font-semibold text-blue-600 bg-blue-50 px-2 py-1 rounded-full">
+                Moyenne
               </span>
             </div>
             <p className="text-3xl font-bold text-gray-800">{userStats.avgScore}%</p>
-            <p className="text-sm text-gray-500 mt-1">Taux de réussite moyen</p>
+            <p className="text-sm text-gray-600 mt-2">Score moyen</p>
           </div>
 
-          {/* Best Score */}
-          <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-all">
+          <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
             <div className="flex items-center justify-between mb-4">
-              <div className="p-3 bg-purple-50 rounded-lg">
-                <Award className="w-6 h-6 text-purple-600" />
+              <div className="p-3 bg-green-50 rounded-lg">
+                <Zap className="w-6 h-6 text-green-600" />
               </div>
-              <span className="text-xs font-semibold text-purple-600 bg-purple-50 px-2 py-1 rounded-full">
-                Meilleur score
+              <span className="text-xs font-semibold text-green-600 bg-green-50 px-2 py-1 rounded-full">
+                Record
               </span>
             </div>
             <p className="text-3xl font-bold text-gray-800">{userStats.bestScore}%</p>
-            <p className="text-sm text-gray-500 mt-1">Meilleure performance</p>
+            <p className="text-sm text-gray-600 mt-2">Meilleur score</p>
           </div>
 
-          {/* Total Time Spent */}
-          <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-all">
+          <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
             <div className="flex items-center justify-between mb-4">
               <div className="p-3 bg-orange-50 rounded-lg">
                 <Clock className="w-6 h-6 text-orange-600" />
               </div>
               <span className="text-xs font-semibold text-orange-600 bg-orange-50 px-2 py-1 rounded-full">
-                     Total
+                Total
               </span>
             </div>
             <p className="text-3xl font-bold text-gray-800">{userStats.totalTimeSpent}h</p>
