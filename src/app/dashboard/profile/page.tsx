@@ -87,10 +87,19 @@ export default function ProfilePage() {
     }
   };
 
-  const loadPreferences = () => {
-    const saved = localStorage.getItem("userPreferences");
-    if (saved) {
-      setPreferences(JSON.parse(saved));
+  const loadPreferences = async () => {
+    try {
+      const response = await fetch("/api/user/preferences");
+      if (!response.ok) throw new Error("Failed to fetch preferences");
+      const prefs = await response.json();
+      setPreferences((prev) => ({
+        ...prev,
+        emailNotifications: prefs.emailNotifications,
+        qcmReminders: prefs.qcmReminders,
+        shareStatistics: prefs.shareStatistics,
+      }));
+    } catch (error) {
+      console.error("Error loading preferences:", error);
     }
   };
 
@@ -183,10 +192,30 @@ export default function ProfilePage() {
     }
   };
 
-  const handlePreferencesChange = (key: string, value: any) => {
+  const handlePreferencesChange = async (key: string, value: any) => {
     const updated = { ...preferences, [key]: value };
     setPreferences(updated);
-    localStorage.setItem("userPreferences", JSON.stringify(updated));
+
+    // Save to database
+    try {
+      const payload: any = {};
+      if (key === "emailNotifications") payload.emailNotifications = value;
+      if (key === "qcmReminders") payload.qcmReminders = value;
+      if (key === "shareStatistics") payload.shareStatistics = value;
+
+      const response = await fetch("/api/user/preferences", {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to update preferences");
+      }
+    } catch (error) {
+      console.error("Error updating preferences:", error);
+      alert("Erreur lors de la mise à jour des préférences");
+    }
   };
 
   if (loading || !userData || !userStats) {

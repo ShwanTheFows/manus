@@ -26,6 +26,8 @@ export async function GET() {
         lastname: true,
         city: true,
         academicyear: true,
+        profilePicture: true,
+        bannerImage: true,
       },
     });
 
@@ -86,6 +88,8 @@ export async function PUT(request: NextRequest) {
         lastname: true,
         city: true,
         academicyear: true,
+        profilePicture: true,
+        bannerImage: true,
       },
     });
 

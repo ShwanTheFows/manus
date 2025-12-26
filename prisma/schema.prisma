@@ -21,6 +21,11 @@ model User {
   isadmin          Boolean
   profilePicture   String?        // Base64 encoded image or URL
   bannerImage      String?        // Base64 encoded image or URL
+  
+  // Preferences
+  emailNotifications Boolean      @default(true)
+  qcmReminders       Boolean      @default(true)
+  shareStatistics    Boolean      @default(false)
 
   histories        QcmHistory[]
 }

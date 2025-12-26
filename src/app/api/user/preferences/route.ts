@@ -1,8 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/authOptions";
+import { prisma } from "@/lib/prisma";
 
-// GET — Fetch user preferences from session/local storage
+// GET — Fetch user preferences from database
 export async function GET() {
   try {
     const session = await getServerSession(authOptions);
@@ -14,19 +15,27 @@ export async function GET() {
       );
     }
 
-    // Preferences are typically stored in local storage on the client side
-    // This endpoint can be used to fetch default preferences or from a database
-    const defaultPreferences = {
-      language: "fr",
-      theme: "light",
-      emailNotifications: true,
-      qcmReminders: true,
-      shareStatistics: false,
-    };
+    const userId = parseInt(session.user.id, 10);
 
-    return NextResponse.json(defaultPreferences);
+    const user = await prisma.user.findUnique({
+      where: { id: userId },
+      select: {
+        emailNotifications: true,
+        qcmReminders: true,
+        shareStatistics: true,
+      },
+    });
+
+    if (!user) {
+      return NextResponse.json(
+        { error: "User not found" },
+        { status: 404 }
+      );
+    }
+
+    return NextResponse.json(user);
   } catch (error) {
-    console.error("Error fetching preferences:", error);
+    console.error("Error fetching user preferences:", error);
     return NextResponse.json(
       { error: "Erreur lors du chargement des préférences" },
       { status: 500 }
@@ -34,7 +43,7 @@ export async function GET() {
   }
 }
 
-// PUT — Update user preferences
+// PUT — Update user preferences in database
 export async function PUT(request: NextRequest) {
   try {
     const session = await getServerSession(authOptions);
@@ -46,34 +55,33 @@ export async function PUT(request: NextRequest) {
       );
     }
 
+    const userId = parseInt(session.user.id, 10);
     const body = await request.json();
 
-    const { language, theme, emailNotifications, qcmReminders, shareStatistics } = body;
+    const { emailNotifications, qcmReminders, shareStatistics } = body;
 
-    // Validate input
-    if (!language || !theme) {
-      return NextResponse.json(
-        { error: "Language and theme are required" },
-        { status: 400 }
-      );
-    }
+    // Update only the preferences that are provided
+    const updateData: any = {};
+    if (emailNotifications !== undefined) updateData.emailNotifications = emailNotifications;
+    if (qcmReminders !== undefined) updateData.qcmReminders = qcmReminders;
+    if (shareStatistics !== undefined) updateData.shareStatistics = shareStatistics;
 
-    // In a real application, you would save these to a database
-    // For now, we'll just return success and let the client handle storage
-    const preferences = {
-      language,
-      theme,
-      emailNotifications: emailNotifications ?? true,
-      qcmReminders: qcmReminders ?? true,
-      shareStatistics: shareStatistics ?? false,
-    };
+    const updatedUser = await prisma.user.update({
+      where: { id: userId },
+      data: updateData,
+      select: {
+        emailNotifications: true,
+        qcmReminders: true,
+        shareStatistics: true,
+      },
+    });
 
     return NextResponse.json({
       message: "Préférences mises à jour avec succès",
-      preferences,
+      preferences: updatedUser,
     });
   } catch (error) {
-    console.error("Error updating preferences:", error);
+    console.error("Error updating user preferences:", error);
     return NextResponse.json(
       { error: "Erreur lors de la mise à jour des préférences" },
       { status: 500 }
