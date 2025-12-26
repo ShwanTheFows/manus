@@ -25,6 +25,8 @@ interface UserStats {
   avgScore: number;
   bestScore: number;
   totalTimeSpent: number;
+  thisWeekAttempts: number;
+  scoreImprovement: number;
 }
 
 export default function ProfilePage() {
@@ -58,27 +60,31 @@ export default function ProfilePage() {
   useEffect(() => {
     if (status === "authenticated") {
       fetchUserData();
+      fetchUserStats();
       loadPreferences();
     }
   }, [status]);
 
   const fetchUserData = async () => {
     try {
-      setLoading(true);
       const response = await fetch("/api/user/profile");
       if (!response.ok) throw new Error("Failed to fetch user data");
       const data = await response.json();
       setUserData(data);
-
-      // Calculate stats (in a real app, this would come from the backend)
-      setUserStats({
-        totalQcmsCompleted: 12,
-        avgScore: 82,
-        bestScore: 95,
-        totalTimeSpent: 45,
-      });
     } catch (error) {
       console.error("Error fetching user data:", error);
+    }
+  };
+
+  const fetchUserStats = async () => {
+    try {
+      setLoading(true);
+      const response = await fetch("/api/user/stats");
+      if (!response.ok) throw new Error("Failed to fetch stats");
+      const stats = await response.json();
+      setUserStats(stats);
+    } catch (error) {
+      console.error("Error fetching user stats:", error);
     } finally {
       setLoading(false);
     }
@@ -319,7 +325,7 @@ export default function ProfilePage() {
                 <BookOpen className="w-6 h-6 text-teal-600 dark:text-teal-400" />
               </div>
               <span className="text-xs font-semibold text-teal-600 dark:text-teal-400 bg-teal-50 dark:bg-teal-900/30 px-2 py-1 rounded-full">
-                +3 cette semaine
+                +{userStats.thisWeekAttempts} cette semaine
               </span>
             </div>
             <p className="text-3xl font-bold text-gray-800 dark:text-white">{userStats.totalQcmsCompleted}</p>
@@ -332,8 +338,12 @@ export default function ProfilePage() {
               <div className="p-3 bg-blue-50 dark:bg-blue-900/30 rounded-lg">
                 <TrendingUp className="w-6 h-6 text-blue-600 dark:text-blue-400" />
               </div>
-              <span className="text-xs font-semibold text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/30 px-2 py-1 rounded-full">
-                +2% vs mois dernier
+              <span className={`text-xs font-semibold px-2 py-1 rounded-full ${
+                userStats.scoreImprovement >= 0
+                  ? "text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/30"
+                  : "text-red-600 dark:text-red-400 bg-red-50 dark:bg-red-900/30"
+              }`}>
+                {userStats.scoreImprovement >= 0 ? "+" : ""}{userStats.scoreImprovement}% vs semaine dernière
               </span>
             </div>
             <p className="text-3xl font-bold text-gray-800 dark:text-white">{userStats.avgScore}%</p>
