@@ -263,7 +263,7 @@ export default function ProfilePage() {
             </label>
           </div>
 
-          <div className="px-6 md:px-8 pb-6">
+          <div className="px-6 md:px-8 pb-6 pt-3">
             <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 -mt-16 relative z-10">
               {/* Profile Avatar and Info */}
               <div className="flex items-end gap-4">
