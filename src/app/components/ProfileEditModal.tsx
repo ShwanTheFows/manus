@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { X, Loader } from "lucide-react";
+import { MOROCCAN_CITIES } from "@/lib/cities";
 
 interface ProfileEditModalProps {
   isOpen: boolean;
@@ -116,14 +117,20 @@ export function ProfileEditModal({
             <label className="block text-sm font-medium text-gray-700 mb-1">
               Ville
             </label>
-            <input
-              type="text"
+            <select
               name="city"
               value={formData.city}
               onChange={handleChange}
               className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-teal-500 text-gray-900"
               required
-            />
+            >
+              <option value="">Sélectionnez une ville</option>
+              {MOROCCAN_CITIES.map((city) => (
+                <option key={city} value={city}>
+                  {city}
+                </option>
+              ))}
+            </select>
           </div>
 
           <div>

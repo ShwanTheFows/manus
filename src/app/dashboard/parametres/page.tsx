@@ -5,6 +5,7 @@ import { Settings, Lock, Bell, Eye, EyeOff, Save, AlertCircle, CheckCircle, Glob
 import DashboardLayout from "@/src/app/components/layouts/DashboardLayout";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import { MOROCCAN_CITIES } from "@/lib/cities";
 
 interface UserSettings {
   email: string;
@@ -238,12 +239,18 @@ export default function ParametresPage() {
 
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">Ville</label>
-              <input
-                type="text"
+              <select
                 value={settings.city}
                 onChange={(e) => handleSettingChange("city", e.target.value)}
                 className="w-full px-4 py-2 border border-gray-300 rounded-lg text-gray-900 focus:outline-none focus:border-teal-500 focus:ring-1 focus:ring-teal-500"
-              />
+              >
+                <option value="">Sélectionnez une ville</option>
+                {MOROCCAN_CITIES.map((city) => (
+                  <option key={city} value={city}>
+                    {city}
+                  </option>
+                ))}
+              </select>
             </div>
 
             <div>
