@@ -5,7 +5,7 @@ import { Settings, Lock, Bell, Eye, EyeOff, Save, AlertCircle, CheckCircle, Glob
 import DashboardLayout from "@/src/app/components/layouts/DashboardLayout";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import { MOROCCAN_CITIES } from "@/lib/cities";
+import { MOROCCAN_CITIES } from "../../../lib/cities";
 
 interface UserSettings {
   email: string;

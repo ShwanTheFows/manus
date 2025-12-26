@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { X, Loader } from "lucide-react";
-import { MOROCCAN_CITIES } from "@/lib/cities";
+import { MOROCCAN_CITIES } from "../../lib/cities";
 
 interface ProfileEditModalProps {
   isOpen: boolean;
