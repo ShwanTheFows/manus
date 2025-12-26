@@ -1,0 +1,182 @@
+[
+  {
+    "title": "Organisation cellulaire",
+    "subject": "Biologie cellulaire",
+    "difficulty": "Facile",
+    "year": 1,
+    "duration": 10,
+    "questions": [
+      {
+        "text": "Quelle structure cellulaire est responsable de la production d’énergie (ATP) ?",
+        "options": [
+          { "text": "Noyau", "isCorrect": false },
+          { "text": "Mitochondrie", "isCorrect": true },
+          { "text": "Ribosome", "isCorrect": false },
+          { "text": "Lysosome", "isCorrect": false }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Transport membranaire",
+    "subject": "Physiologie",
+    "difficulty": "Moyen",
+    "year": 1,
+    "duration": 15,
+    "questions": [
+      {
+        "text": "Quel transport nécessite de l’ATP pour faire passer des ions contre leur gradient ?",
+        "options": [
+          { "text": "Diffusion facilitée", "isCorrect": false },
+          { "text": "Diffusion simple", "isCorrect": false },
+          { "text": "Transport actif", "isCorrect": true },
+          { "text": "Osmose", "isCorrect": false }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Éléments chimiques majeurs du corps",
+    "subject": "Chimie générale",
+    "difficulty": "Facile",
+    "year": 1,
+    "duration": 10,
+    "questions": [
+      {
+        "text": "Quels sont les quatre éléments qui constituent plus de 96 % de la masse corporelle humaine ?",
+        "options": [
+          { "text": "C, H, O, N", "isCorrect": true },
+          { "text": "Na, K, Cl, Ca", "isCorrect": false },
+          { "text": "Fe, I, Zn, Mg", "isCorrect": false },
+          { "text": "S, P, K, Mg", "isCorrect": false }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Réaction acide-base",
+    "subject": "Biochimie",
+    "difficulty": "Moyen",
+    "year": 1,
+    "duration": 12,
+    "questions": [
+      {
+        "text": "Quel ion est libéré lorsqu’un acide se dissocie en solution aqueuse ?",
+        "options": [
+          { "text": "OH⁻", "isCorrect": false },
+          { "text": "H⁺", "isCorrect": true },
+          { "text": "Na⁺", "isCorrect": false },
+          { "text": "Cl⁻", "isCorrect": false }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Organisation du système nerveux",
+    "subject": "Anatomie",
+    "difficulty": "Difficile",
+    "year": 1,
+    "duration": 20,
+    "questions": [
+      {
+        "text": "Quelle partie du système nerveux contrôle les fonctions volontaires ?",
+        "options": [
+          { "text": "Système nerveux autonome", "isCorrect": false },
+          { "text": "Système nerveux périphérique", "isCorrect": false },
+          { "text": "Système nerveux somatique", "isCorrect": true },
+          { "text": "Système nerveux entérique", "isCorrect": false }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Métabolisme du glucose",
+    "subject": "Biochimie",
+    "difficulty": "Moyen",
+    "year": 1,
+    "duration": 15,
+    "questions": [
+      {
+        "text": "Quelle enzyme est la plus régulée dans la glycolyse ?",
+        "options": [
+          { "text": "Hexokinase", "isCorrect": false },
+          { "text": "Phosphofructokinase-1 (PFK-1)", "isCorrect": true },
+          { "text": "Glycogène phosphorylase", "isCorrect": false },
+          { "text": "Pyruvate kinase", "isCorrect": false }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Acides aminés essentiels",
+    "subject": "Biochimie",
+    "difficulty": "Facile",
+    "year": 1,
+    "duration": 10,
+    "questions": [
+      {
+        "text": "Lequel des acides aminés suivants est essentiel chez l’adulte ?",
+        "options": [
+          { "text": "Alanine", "isCorrect": false },
+          { "text": "Valine", "isCorrect": true },
+          { "text": "Glycine", "isCorrect": false },
+          { "text": "Glutamate", "isCorrect": false }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Propriétés de l’eau",
+    "subject": "Chimie générale",
+    "difficulty": "Facile",
+    "year": 1,
+    "duration": 10,
+    "questions": [
+      {
+        "text": "Pourquoi l’eau a-t-elle une tension superficielle élevée ?",
+        "options": [
+          { "text": "Parce qu’elle est acide", "isCorrect": false },
+          { "text": "À cause des liaisons hydrogène entre molécules", "isCorrect": true },
+          { "text": "Parce que c’est un métal", "isCorrect": false },
+          { "text": "Parce qu’elle est covalente", "isCorrect": false }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Cycle de l’ATP",
+    "subject": "Physiologie",
+    "difficulty": "Difficile",
+    "year": 1,
+    "duration": 20,
+    "questions": [
+      {
+        "text": "Quel processus régénère l’ATP à partir de l’ADP dans la mitochondrie ?",
+        "options": [
+          { "text": "Glycolyse", "isCorrect": false },
+          { "text": "Phosphorylation oxydative", "isCorrect": true },
+          { "text": "Fermentation", "isCorrect": false },
+          { "text": "Cycle de Krebs (directement)", "isCorrect": false }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Structure de l’ADN",
+    "subject": "Biologie moléculaire",
+    "difficulty": "Moyen",
+    "year": 1,
+    "duration": 15,
+    "questions": [
+      {
+        "text": "Quelle est la base azotée complémentaire de la cytosine dans l’ADN ?",
+        "options": [
+          { "text": "Adénine", "isCorrect": false },
+          { "text": "Thymine", "isCorrect": false },
+          { "text": "Guanine", "isCorrect": true },
+          { "text": "Uracile", "isCorrect": false }
+        ]
+      }
+    ]
+  }
+]

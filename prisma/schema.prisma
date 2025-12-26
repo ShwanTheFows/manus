@@ -1,0 +1,78 @@
+// This is your Prisma schema file
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            Int            @id @default(autoincrement())
+  email         String         @unique
+  password      String
+  firstname     String?
+  lastname      String?
+  city          String
+  academicyear  String
+  isadmin       Boolean
+
+  histories     QcmHistory[]
+}
+
+model Subject {
+  id       Int    @id @default(autoincrement())
+  name     String @unique   // e.g. "Anatomie", "Physiologie", "Biochimie"
+  qcms     Qcm[]
+}
+
+model Qcm {
+  id           Int           @id @default(autoincrement())
+  title        String        // e.g. "Système nerveux central"
+  difficulty   Difficulty
+  academicYear String        // e.g. "Année 2"
+  durationMin  Int           // expected duration (e.g. 30 min)
+  subject      Subject       @relation(fields: [subjectId], references: [id])
+  subjectId    Int
+  createdAt    DateTime      @default(now())
+
+  questions    Question[]
+  histories    QcmHistory[]
+}
+
+model Question {
+  id       Int      @id @default(autoincrement())
+  text     String
+  qcm      Qcm      @relation(fields: [qcmId], references: [id])
+  qcmId    Int
+  options  Option[]
+}
+
+model Option {
+  id         Int      @id @default(autoincrement())
+  text       String
+  isCorrect  Boolean
+  question   Question @relation(fields: [questionId], references: [id])
+  questionId Int
+}
+
+model QcmHistory {
+  id          Int       @id @default(autoincrement())
+  user        User      @relation(fields: [userId], references: [id])
+  userId      Int
+  qcm         Qcm       @relation(fields: [qcmId], references: [id])
+  qcmId       Int
+  score       Int       // e.g. 85 (%)
+  completed   Boolean   @default(true)
+  timeSpentMin Int?     // actual time user took
+  attemptedAt DateTime  @default(now())
+}
+
+enum Difficulty {
+  Facile
+  Moyen
+  Difficile
+}

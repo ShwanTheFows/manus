@@ -1,0 +1,39 @@
+@import "tailwindcss";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Theme variables */
+:root {
+  --background: #F9FAFB;
+  --foreground: #F9FAFB;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #F9FAFB;
+    --foreground: #F9FAFB;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Dreamy background animation */
+@keyframes dreamyBackground {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.animate-dreamy {
+  background-size: 200% 200%;
+  animation: dreamyBackground 15s ease-in-out infinite;
+}
