@@ -11,16 +11,18 @@ datasource db {
 }
 
 model User {
-  id            Int            @id @default(autoincrement())
-  email         String         @unique
-  password      String
-  firstname     String?
-  lastname      String?
-  city          String
-  academicyear  String
-  isadmin       Boolean
+  id               Int            @id @default(autoincrement())
+  email            String         @unique
+  password         String
+  firstname        String?
+  lastname         String?
+  city             String
+  academicyear     String
+  isadmin          Boolean
+  profilePicture   String?        // Base64 encoded image or URL
+  bannerImage      String?        // Base64 encoded image or URL
 
-  histories     QcmHistory[]
+  histories        QcmHistory[]
 }
 
 model Subject {

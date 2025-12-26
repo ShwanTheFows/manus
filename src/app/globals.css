@@ -7,20 +7,21 @@
 /* Theme variables */
 :root {
   --background: #F9FAFB;
+  --foreground: #111827;
+}
+
+html.dark {
+  --background: #111827;
   --foreground: #F9FAFB;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #F9FAFB;
-    --foreground: #F9FAFB;
-  }
+body {
+  @apply bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+html.dark {
+  color-scheme: dark;
 }
 
 /* Dreamy background animation */
@@ -36,4 +37,9 @@ body {
 .animate-dreamy {
   background-size: 200% 200%;
   animation: dreamyBackground 15s ease-in-out infinite;
+}
+
+/* Dark mode transitions */
+* {
+  @apply transition-colors duration-200;
 }

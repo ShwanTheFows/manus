@@ -93,7 +93,7 @@ export function ProfileEditModal({
               name="firstname"
               value={formData.firstname}
               onChange={handleChange}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-teal-500"
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-teal-500 text-gray-900"
               required
             />
           </div>
@@ -107,7 +107,7 @@ export function ProfileEditModal({
               name="lastname"
               value={formData.lastname}
               onChange={handleChange}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-teal-500"
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-teal-500 text-gray-900"
               required
             />
           </div>
@@ -121,7 +121,7 @@ export function ProfileEditModal({
               name="city"
               value={formData.city}
               onChange={handleChange}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-teal-500"
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-teal-500 text-gray-900"
               required
             />
           </div>
@@ -134,7 +134,7 @@ export function ProfileEditModal({
               name="academicyear"
               value={formData.academicyear}
               onChange={handleChange}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-teal-500"
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-teal-500 text-gray-900"
               required
             >
               <option value="Année 1">Année 1</option>
