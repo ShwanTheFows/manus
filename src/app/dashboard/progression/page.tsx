@@ -5,7 +5,7 @@ import { TrendingUp, Calendar, Target, Zap, Award, Clock, BarChart3, LineChart a
 import DashboardLayout from "@/src/app/components/layouts/DashboardLayout";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import { LineChart, Line, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, PieChart, Pie, Cell } from "recharts";
+import { LineChart, Line, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from "recharts";
 
 interface ProgressionData {
   totalAttempts: number;
@@ -22,7 +22,7 @@ interface ProgressionData {
 }
 
 export default function ProgressionPage() {
-  const { data: session, status } = useSession();
+  const { status } = useSession();
   const router = useRouter();
   const [data, setData] = useState<ProgressionData | null>(null);
   const [loading, setLoading] = useState(true);
@@ -64,7 +64,7 @@ export default function ProgressionPage() {
     );
   }
 
-  const COLORS = ["#14b8a6", "#06b6d4", "#3b82f6", "#8b5cf6", "#ec4899"];
+
 
   return (
     <DashboardLayout>
@@ -241,7 +241,7 @@ export default function ProgressionPage() {
               <h3 className="font-semibold text-gray-800">Temps total</h3>
             </div>
             <p className="text-3xl font-bold text-teal-600">{data.totalTimeSpent}h</p>
-            <p className="text-sm text-gray-600 mt-2">Temps d'étude cumulé</p>
+            <p className="text-sm text-gray-600 mt-2">Temps d&apos;étude cumulé</p>
           </div>
 
           <div className="bg-gradient-to-br from-blue-50 to-cyan-50 p-6 rounded-xl border border-blue-100">

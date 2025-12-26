@@ -29,7 +29,7 @@ interface UserStats {
 }
 
 export default function ProfilePage() {
-  const { data: session, status } = useSession();
+  const { status } = useSession();
   const router = useRouter();
 
   const [userData, setUserData] = useState<UserData | null>(null);
@@ -103,7 +103,7 @@ export default function ProfilePage() {
     }
   };
 
-  const handleProfileUpdate = async (data: any) => {
+  const handleProfileUpdate = async (data: { firstname: string; lastname: string; city: string; academicyear: string }) => {
     try {
       const response = await fetch("/api/user/profile", {
         method: "PUT",
@@ -118,12 +118,12 @@ export default function ProfilePage() {
 
       const result = await response.json();
       setUserData(result.user);
-    } catch (error: any) {
-      throw new Error(error.message);
+    } catch (error) {
+      throw new Error(error instanceof Error ? error.message : "Erreur lors de la mise à jour");
     }
   };
 
-  const handlePasswordChange = async (data: any) => {
+  const handlePasswordChange = async (data: { currentPassword: string; newPassword: string }) => {
     try {
       const response = await fetch("/api/user/password", {
         method: "PUT",
@@ -135,8 +135,8 @@ export default function ProfilePage() {
         const error = await response.json();
         throw new Error(error.error || "Failed to change password");
       }
-    } catch (error: any) {
-      throw new Error(error.message);
+    } catch (error) {
+      throw new Error(error instanceof Error ? error.message : "Erreur lors du changement de mot de passe");
     }
   };
 
@@ -152,8 +152,8 @@ export default function ProfilePage() {
         const error = await response.json();
         throw new Error(error.error || "Failed to delete account");
       }
-    } catch (error: any) {
-      throw new Error(error.message);
+    } catch (error) {
+      throw new Error(error instanceof Error ? error.message : "Erreur lors de la suppression");
     }
   };
 
@@ -184,21 +184,25 @@ export default function ProfilePage() {
             }
           : null
       );
-    } catch (error: any) {
+    } catch (error) {
       console.error("Error uploading image:", error);
-      alert(error.message);
+      alert(error instanceof Error ? error.message : "Erreur lors du téléchargement");
     } finally {
       setUploadingImage(false);
     }
   };
 
-  const handlePreferencesChange = async (key: string, value: any) => {
+  const handlePreferencesChange = async (key: string, value: boolean) => {
     const updated = { ...preferences, [key]: value };
     setPreferences(updated);
 
     // Save to database
     try {
-      const payload: any = {};
+      const payload: {
+        emailNotifications?: boolean;
+        qcmReminders?: boolean;
+        shareStatistics?: boolean;
+      } = {};
       if (key === "emailNotifications") payload.emailNotifications = value;
       if (key === "qcmReminders") payload.qcmReminders = value;
       if (key === "shareStatistics") payload.shareStatistics = value;
@@ -397,11 +401,11 @@ export default function ProfilePage() {
                 <Clock className="w-6 h-6 text-orange-600" />
               </div>
               <span className="text-xs font-semibold text-orange-600 bg-orange-50 px-2 py-1 rounded-full">
-                Total
+                     Total
               </span>
             </div>
             <p className="text-3xl font-bold text-gray-800">{userStats.totalTimeSpent}h</p>
-            <p className="text-sm text-gray-500 mt-1">Temps d'étude total</p>
+            <p className="text-sm text-gray-600 mt-2">Temps d&apos;étude total</p>
           </div>
         </div>
 

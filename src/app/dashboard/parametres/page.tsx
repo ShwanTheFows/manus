@@ -271,7 +271,7 @@ export default function ParametresPage() {
                 disabled
                 className="w-full px-4 py-2 border border-gray-300 rounded-lg text-gray-500 bg-gray-50 cursor-not-allowed"
               />
-              <p className="text-xs text-gray-500 mt-1">L'email ne peut pas être modifié</p>
+              <p className="text-xs text-gray-500 mt-1">L&apos;email ne peut pas être modifié</p>
             </div>
           </div>
 
