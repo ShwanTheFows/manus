@@ -89,9 +89,14 @@ export async function GET() {
     }));
 
     // Create score history (last 30 days)
+    interface ScoreHistoryItem {
+      date: string;
+      score: number;
+      attempts: number;
+    }
     const scoreHistory = history
       .filter((h) => new Date(h.attemptedAt) >= monthAgo)
-      .reduce((acc: any[], h) => {
+      .reduce((acc: ScoreHistoryItem[], h) => {
         const date = new Date(h.attemptedAt).toLocaleDateString("fr-FR");
         const existing = acc.find((item) => item.date === date);
         if (existing) {

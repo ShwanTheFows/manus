@@ -52,7 +52,10 @@ export async function PUT(request: NextRequest) {
     const dataUrl = `data:${file.type};base64,${base64}`;
 
     // Update user with image data
-    const updateData: any = {};
+    const updateData: {
+      profilePicture?: string;
+      bannerImage?: string;
+    } = {};
     if (type === "profile") {
       updateData.profilePicture = dataUrl;
     } else if (type === "banner") {

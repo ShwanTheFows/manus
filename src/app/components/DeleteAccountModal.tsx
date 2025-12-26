@@ -35,8 +35,8 @@ export function DeleteAccountModal({
       await onDelete(password);
       // Redirect to login after deletion
       await signOut({ callbackUrl: "/auth" });
-    } catch (err: any) {
-      setError(err.message || "Erreur lors de la suppression du compte");
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Erreur lors de la suppression du compte");
       setLoading(false);
     }
   };
@@ -94,7 +94,7 @@ export function DeleteAccountModal({
               Confirmation
             </label>
             <p className="text-xs text-gray-500 mb-2">
-              Tapez "SUPPRIMER MON COMPTE" pour confirmer
+              Tapez &quot;SUPPRIMER MON COMPTE&quot; pour confirmer
             </p>
             <input
               type="text"

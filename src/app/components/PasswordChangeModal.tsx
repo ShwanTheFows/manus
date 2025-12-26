@@ -6,7 +6,7 @@ import { X, Loader, Eye, EyeOff } from "lucide-react";
 interface PasswordChangeModalProps {
   isOpen: boolean;
   onClose: () => void;
-  onSave: (data: any) => Promise<void>;
+  onSave: (data: { currentPassword: string; newPassword: string }) => Promise<void>;
 }
 
 export function PasswordChangeModal({
@@ -66,8 +66,8 @@ export function PasswordChangeModal({
           confirmPassword: "",
         });
       }, 1500);
-    } catch (err: any) {
-      setError(err.message || "Erreur lors du changement de mot de passe");
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Erreur lors du changement de mot de passe");
     } finally {
       setLoading(false);
     }

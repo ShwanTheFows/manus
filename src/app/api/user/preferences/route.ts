@@ -61,7 +61,11 @@ export async function PUT(request: NextRequest) {
     const { emailNotifications, qcmReminders, shareStatistics } = body;
 
     // Update only the preferences that are provided
-    const updateData: any = {};
+    const updateData: {
+      emailNotifications?: boolean;
+      qcmReminders?: boolean;
+      shareStatistics?: boolean;
+    } = {};
     if (emailNotifications !== undefined) updateData.emailNotifications = emailNotifications;
     if (qcmReminders !== undefined) updateData.qcmReminders = qcmReminders;
     if (shareStatistics !== undefined) updateData.shareStatistics = shareStatistics;

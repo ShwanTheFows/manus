@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Settings, Lock, Bell, Eye, EyeOff, Save, AlertCircle, CheckCircle, Globe, Shield, Trash2 } from "lucide-react";
+import { Settings, Lock, Bell, Eye, EyeOff, Save, AlertCircle, CheckCircle, Trash2 } from "lucide-react";
 import DashboardLayout from "@/src/app/components/layouts/DashboardLayout";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
@@ -19,7 +19,7 @@ interface UserSettings {
 }
 
 export default function ParametresPage() {
-  const { data: session, status } = useSession();
+  const { status } = useSession();
   const router = useRouter();
 
   const [settings, setSettings] = useState<UserSettings | null>(null);
@@ -76,9 +76,9 @@ export default function ParametresPage() {
     }
   };
 
-  const handleSettingChange = (key: string, value: any) => {
+  const handleSettingChange = (key: keyof UserSettings, value: string | boolean) => {
     if (settings) {
-      setSettings({ ...settings, [key]: value });
+      setSettings({ ...settings, [key]: value } as UserSettings);
     }
   };
 
@@ -165,8 +165,8 @@ export default function ParametresPage() {
         showNew: false,
         showConfirm: false,
       });
-    } catch (error: any) {
-      setPasswordMessage({ type: "error", text: error.message });
+    } catch (error) {
+      setPasswordMessage({ type: "error", text: error instanceof Error ? error.message : "Erreur lors de la modification" });
     } finally {
       setPasswordLoading(false);
     }
@@ -445,9 +445,9 @@ export default function ParametresPage() {
             <AlertCircle className="w-5 h-5" />
             Zone de danger
           </h2>
-          <p className="text-red-700 text-sm mb-4">
-            Ces actions sont irréversibles. Veuillez être prudent.
-          </p>
+            <p className="text-red-700 text-sm mb-4">
+              Ces actions sont irréversibles. Veuillez être prudent.
+            </p>
           <button className="flex items-center gap-2 px-6 py-3 bg-red-600 text-white rounded-lg font-semibold hover:bg-red-700 transition-all">
             <Trash2 className="w-5 h-5" />
             Supprimer mon compte
