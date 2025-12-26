@@ -479,11 +479,24 @@ export default function QcmPreparationPage() {
                           </div>
                         </div>
                       </div>
-                      <ChevronDown
-                        className={`w-5 h-5 text-gray-400 transition-transform ${
-                          expandedModule === module.id ? "transform rotate-180" : ""
-                        }`}
-                      />
+                      <div className="flex items-center gap-3">
+                        <button
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            const qcmIds = module.qcms.map(q => q.id).join(',');
+                            router.push(`/dashboard/qcm/session?ids=${qcmIds}`);
+                          }}
+                          className="hidden md:flex items-center gap-2 px-4 py-2 bg-teal-600 text-white text-sm font-medium rounded-lg hover:bg-teal-700 transition-colors shadow-sm"
+                        >
+                          <BarChart2 className="w-4 h-4" />
+                          Tout commencer
+                        </button>
+                        <ChevronDown
+                          className={`w-5 h-5 text-gray-400 transition-transform ${
+                            expandedModule === module.id ? "transform rotate-180" : ""
+                          }`}
+                        />
+                      </div>
                     </button>
 
                     {expandedModule === module.id && (
