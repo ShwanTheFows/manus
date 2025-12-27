@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Mail, MapPin, Calendar, BookOpen, Award, Clock, Camera, Zap, Upload } from "lucide-react";
+import { Mail, MapPin, Calendar, BookOpen, Award, Clock, Camera, Zap, Upload, Moon, Sun } from "lucide-react";
+import { useTheme } from "@/src/app/components/ThemeProvider";
 import DashboardLayout from "@/src/app/components/layouts/DashboardLayout";
 import { ProfileEditModal } from "@/src/app/components/ProfileEditModal";
 import { PasswordChangeModal } from "@/src/app/components/PasswordChangeModal";
@@ -42,6 +43,7 @@ export default function ProfilePage() {
   const [isPasswordModalOpen, setIsPasswordModalOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
 
+  const { theme, toggleTheme } = useTheme();
   const [preferences, setPreferences] = useState({
     language: "fr",
     emailNotifications: true,
@@ -235,9 +237,9 @@ export default function ProfilePage() {
 
   return (
     <DashboardLayout>
-      <div className="space-y-6 p-4 md:p-6 bg-gray-50 min-h-screen">
+      <div className="space-y-6 p-4 md:p-6 bg-gray-50 dark:bg-slate-900 min-h-screen transition-colors">
         {/* Profile Header Card */}
-        <div className="bg-gradient-to-r from-teal-50 to-blue-50 rounded-2xl shadow-sm border border-teal-100 overflow-hidden">
+        <div className="bg-gradient-to-r from-teal-50 to-blue-50 dark:from-slate-800 dark:to-slate-700 rounded-2xl shadow-sm border border-teal-100 dark:border-slate-700 overflow-hidden">
           {/* Banner Image */}
           <div className="relative h-32 bg-gradient-to-r from-teal-500 to-blue-500 group">
             {userData.bannerImage && (
@@ -428,7 +430,7 @@ export default function ProfilePage() {
               Sécurité & Confidentialité
             </h2>
             <div className="space-y-4">
-              <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+              <div className="flex items-center justify-between p-4 bg-gray-50 dark:bg-slate-700/50 rounded-lg">
                 <div>
                   <p className="font-medium text-gray-800 dark:text-white">Mot de passe</p>
                   <p className="text-sm text-gray-500">Dernière modification il y a 3 mois</p>
@@ -440,7 +442,7 @@ export default function ProfilePage() {
                   Changer
                 </button>
               </div>
-              <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+              <div className="flex items-center justify-between p-4 bg-gray-50 dark:bg-slate-700/50 rounded-lg">
                 <div>
                   <p className="font-medium text-gray-800 dark:text-white">Authentification à deux facteurs</p>
                   <p className="text-sm text-gray-500">Non activée</p>
@@ -449,7 +451,7 @@ export default function ProfilePage() {
                   Activer
                 </button>
               </div>
-              <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+              <div className="flex items-center justify-between p-4 bg-gray-50 dark:bg-slate-700/50 rounded-lg">
                 <div>
                   <p className="font-medium text-gray-800 dark:text-white">Sessions actives</p>
                   <p className="text-sm text-gray-500">1 appareil connecté</p>
@@ -474,12 +476,34 @@ export default function ProfilePage() {
               <select
                 value={preferences.language}
                 onChange={(e) => handlePreferencesChange("language", e.target.value)}
-                className="w-full mt-2 px-4 py-2 border border-gray-200 dark:border-slate-700 rounded-lg text-gray-900 focus:outline-none focus:border-teal-500"
+                className="w-full mt-2 px-4 py-2 border border-gray-200 dark:border-slate-700 rounded-lg text-gray-900 dark:bg-slate-700 dark:text-white focus:outline-none focus:border-teal-500"
               >
                 <option value="fr">Français</option>
                 <option value="en">English</option>
                 <option value="ar">العربية</option>
               </select>
+            </div>
+            <div>
+              <label className="text-sm text-gray-600 dark:text-gray-400 font-medium">Thème</label>
+              <button
+                onClick={toggleTheme}
+                className="w-full mt-2 flex items-center justify-between px-4 py-2 border border-gray-200 dark:border-slate-700 rounded-lg text-gray-900 dark:text-white hover:bg-gray-50 dark:hover:bg-slate-700 transition-colors"
+              >
+                <span className="flex items-center gap-2">
+                  {theme === "light" ? (
+                    <>
+                      <Sun className="w-4 h-4 text-yellow-500" />
+                      Mode Clair
+                    </>
+                  ) : (
+                    <>
+                      <Moon className="w-4 h-4 text-blue-400" />
+                      Mode Sombre
+                    </>
+                  )}
+                </span>
+                <span className="text-xs text-gray-500">Changer</span>
+              </button>
             </div>
           </div>
           <div className="mt-6 space-y-3">
@@ -514,7 +538,7 @@ export default function ProfilePage() {
         </div>
 
         {/* Danger Zone */}
-        <div className="bg-red-50 rounded-xl shadow-sm border border-red-200 p-6">
+        <div className="bg-red-50 dark:bg-red-900/20 rounded-xl shadow-sm border border-red-200 dark:border-red-900/30 p-6">
           <h2 className="text-xl font-semibold text-red-800 mb-4">Zone de danger</h2>
           <p className="text-red-700 text-sm mb-4">
             Ces actions sont irréversibles. Veuillez être prudent.
