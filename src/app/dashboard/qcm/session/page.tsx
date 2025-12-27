@@ -107,7 +107,7 @@ export default function QcmSessionPage() {
       <div className="flex justify-center items-center h-screen">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-teal-600 mx-auto mb-4"></div>
-          <p className="text-gray-600">Chargement des QCMs...</p>
+          <p className="text-gray-600 dark:text-gray-400">Chargement des QCMs...</p>
         </div>
       </div>
     );
@@ -217,13 +217,13 @@ export default function QcmSessionPage() {
     <div className="min-h-screen bg-gradient-to-br from-teal-50 to-blue-50 py-8 px-4">
       <div className="max-w-4xl mx-auto">
         {/* Session Header */}
-        <div className="bg-white rounded-lg shadow-md p-6 mb-6">
+        <div className="bg-white dark:bg-slate-800 rounded-lg shadow-md p-6 mb-6">
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-6">
             <div>
-              <h1 className="text-2xl md:text-3xl font-bold text-gray-800">
+              <h1 className="text-2xl md:text-3xl font-bold text-gray-800 dark:text-white">
                 Session QCMs
               </h1>
-              <p className="text-sm text-gray-600 mt-2">
+              <p className="text-sm text-gray-600 dark:text-gray-400 mt-2">
                 QCM {session.currentQcmIndex + 1} sur {session.qcms.length} • Question {currentQuestion + 1} sur {currentQcm.questions.length}
               </p>
             </div>
@@ -240,10 +240,10 @@ export default function QcmSessionPage() {
           {/* Session Progress */}
           <div className="mb-6">
             <div className="flex justify-between items-center mb-2">
-              <span className="text-sm font-medium text-gray-700">
+              <span className="text-sm font-medium text-gray-700 dark:text-gray-200">
                 Progression de la session
               </span>
-              <span className="text-sm font-medium text-gray-700">
+              <span className="text-sm font-medium text-gray-700 dark:text-gray-200">
                 {completedCount}/{session.qcms.length}
               </span>
             </div>
@@ -258,10 +258,10 @@ export default function QcmSessionPage() {
           {/* QCM Progress */}
           <div>
             <div className="flex justify-between items-center mb-2">
-              <span className="text-sm font-medium text-gray-700">
+              <span className="text-sm font-medium text-gray-700 dark:text-gray-200">
                 Progression du QCM actuel
               </span>
-              <span className="text-sm font-medium text-gray-700">
+              <span className="text-sm font-medium text-gray-700 dark:text-gray-200">
                 {answeredCount}/{currentQcm.questions.length}
               </span>
             </div>
@@ -277,9 +277,9 @@ export default function QcmSessionPage() {
         {!isCurrentSubmitted ? (
           <>
             {/* Question Card */}
-            <div className="bg-white rounded-lg shadow-md p-8 mb-6">
+            <div className="bg-white dark:bg-slate-800 rounded-lg shadow-md p-8 mb-6">
               <div className="mb-8">
-                <h2 className="text-xl md:text-2xl font-semibold text-gray-800 leading-relaxed">
+                <h2 className="text-xl md:text-2xl font-semibold text-gray-800 dark:text-white leading-relaxed">
                   {question.text}
                 </h2>
               </div>
@@ -299,7 +299,7 @@ export default function QcmSessionPage() {
                         ${
                           selected
                             ? "border-teal-600 bg-teal-50 shadow-md"
-                            : "border-gray-200 bg-white hover:border-teal-300 hover:bg-teal-50"
+                            : "border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 hover:border-teal-300 hover:bg-teal-50"
                         }
                       `}
                     >
@@ -311,15 +311,15 @@ export default function QcmSessionPage() {
                             ${
                               selected
                                 ? "border-teal-600 bg-teal-600"
-                                : "border-gray-300 bg-white"
+                                : "border-gray-300 bg-white dark:bg-slate-800"
                             }
                           `}
                         >
                           {selected && (
-                            <div className="w-2 h-2 bg-white rounded-full"></div>
+                            <div className="w-2 h-2 bg-white dark:bg-slate-800 rounded-full"></div>
                           )}
                         </div>
-                        <span className="text-gray-800 font-medium leading-relaxed">
+                        <span className="text-gray-800 dark:text-white font-medium leading-relaxed">
                           {option.text}
                         </span>
                       </div>
@@ -338,8 +338,8 @@ export default function QcmSessionPage() {
                   flex-1 py-3 px-4 rounded-lg font-medium transition-all
                   ${
                     currentQuestion === 0
-                      ? "bg-gray-100 text-gray-400 cursor-not-allowed"
-                      : "bg-white text-gray-700 border-2 border-gray-300 hover:border-gray-400"
+                      ? "bg-gray-100 dark:bg-slate-700 text-gray-400 cursor-not-allowed"
+                      : "bg-white dark:bg-slate-800 text-gray-700 dark:text-gray-200 border-2 border-gray-300 hover:border-gray-400"
                   }
                 `}
               >
@@ -349,7 +349,7 @@ export default function QcmSessionPage() {
               {currentQuestion < currentQcm.questions.length - 1 ? (
                 <button
                   onClick={() => setCurrentQuestion(currentQuestion + 1)}
-                  className="flex-1 py-3 px-4 rounded-lg font-medium bg-white text-gray-700 border-2 border-gray-300 hover:border-gray-400 transition-all"
+                  className="flex-1 py-3 px-4 rounded-lg font-medium bg-white dark:bg-slate-800 text-gray-700 dark:text-gray-200 border-2 border-gray-300 hover:border-gray-400 transition-all"
                 >
                   Suivant →
                 </button>
@@ -364,8 +364,8 @@ export default function QcmSessionPage() {
             </div>
 
             {/* Question Navigator */}
-            <div className="bg-white rounded-lg shadow-md p-6">
-              <h3 className="font-semibold text-gray-800 mb-4">
+            <div className="bg-white dark:bg-slate-800 rounded-lg shadow-md p-6">
+              <h3 className="font-semibold text-gray-800 dark:text-white mb-4">
                 Aperçu des questions
               </h3>
               <div className="grid grid-cols-6 sm:grid-cols-8 md:grid-cols-10 gap-2">
@@ -381,7 +381,7 @@ export default function QcmSessionPage() {
                           ? "bg-teal-600 text-white shadow-md"
                           : currentAnswers[q.id]
                           ? "bg-teal-100 text-teal-700 border-2 border-teal-300"
-                          : "bg-gray-100 text-gray-600 border-2 border-gray-200 hover:border-gray-300"
+                          : "bg-gray-100 dark:bg-slate-700 text-gray-600 dark:text-gray-400 border-2 border-gray-200 dark:border-slate-700 hover:border-gray-300"
                       }
                     `}
                   >
@@ -393,7 +393,7 @@ export default function QcmSessionPage() {
           </>
         ) : (
           /* Results Screen for Current QCM */
-          <div className="bg-white rounded-lg shadow-md p-8 text-center mb-6">
+          <div className="bg-white dark:bg-slate-800 rounded-lg shadow-md p-8 text-center mb-6">
             <div className="mb-8">
               {currentScore !== null && currentScore >= 70 ? (
                 <CheckCircle className="w-20 h-20 text-green-500 mx-auto mb-4" />
@@ -402,7 +402,7 @@ export default function QcmSessionPage() {
               )}
             </div>
 
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-2">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-800 dark:text-white mb-2">
               Résultats
             </h2>
 
@@ -410,7 +410,7 @@ export default function QcmSessionPage() {
               <div className="text-6xl font-bold bg-gradient-to-r from-teal-600 to-blue-600 bg-clip-text text-transparent mb-2">
                 {currentScore}%
               </div>
-              <p className="text-gray-600 text-lg">
+              <p className="text-gray-600 dark:text-gray-400 text-lg">
                 {currentScore !== null && currentScore >= 70
                   ? "Excellent travail ! 🎉"
                   : "Continuez vos efforts ! 💪"}
@@ -421,19 +421,19 @@ export default function QcmSessionPage() {
             <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-8">
               <div className="bg-teal-50 rounded-lg p-4">
                 <BarChart3 className="w-6 h-6 text-teal-600 mx-auto mb-2" />
-                <p className="text-sm text-gray-600">Score</p>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Score</p>
                 <p className="text-2xl font-bold text-teal-600">{currentScore}%</p>
               </div>
               <div className="bg-blue-50 rounded-lg p-4">
                 <Clock className="w-6 h-6 text-blue-600 mx-auto mb-2" />
-                <p className="text-sm text-gray-600">Temps</p>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Temps</p>
                 <p className="text-2xl font-bold text-blue-600">
                   {Math.round((Date.now() - session.startTimes[currentQcm.id]) / 1000 / 60)}m
                 </p>
               </div>
               <div className="bg-purple-50 rounded-lg p-4">
                 <CheckCircle className="w-6 h-6 text-purple-600 mx-auto mb-2" />
-                <p className="text-sm text-gray-600">Questions</p>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Questions</p>
                 <p className="text-2xl font-bold text-purple-600">
                   {currentQcm.questions.length}
                 </p>
@@ -450,8 +450,8 @@ export default function QcmSessionPage() {
                   flex items-center justify-center gap-2
                   ${
                     session.currentQcmIndex === 0
-                      ? "bg-gray-100 text-gray-400 cursor-not-allowed"
-                      : "bg-white text-gray-700 border-2 border-gray-300 hover:border-gray-400"
+                      ? "bg-gray-100 dark:bg-slate-700 text-gray-400 cursor-not-allowed"
+                      : "bg-white dark:bg-slate-800 text-gray-700 dark:text-gray-200 border-2 border-gray-300 hover:border-gray-400"
                   }
                 `}
               >

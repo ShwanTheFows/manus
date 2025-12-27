@@ -303,10 +303,10 @@ export default function ProfilePage() {
                   </label>
                 </div>
                 <div className="pb-2">
-                  <h1 className="text-2xl font-bold text-gray-800">
+                  <h1 className="text-2xl font-bold text-gray-800 dark:text-white">
                     {userData.firstname} {userData.lastname}
                   </h1>
-                  <div className="flex flex-wrap items-center gap-4 mt-1 text-gray-600">
+                  <div className="flex flex-wrap items-center gap-4 mt-1 text-gray-600 dark:text-gray-400">
                     <div className="flex items-center gap-1.5">
                       <Mail className="w-4 h-4" />
                       <span className="text-sm">{userData.email}</span>
@@ -324,7 +324,7 @@ export default function ProfilePage() {
               </div>
               <button
                 onClick={() => setIsEditModalOpen(true)}
-                className="flex items-center gap-2 px-4 py-2 bg-white text-teal-600 rounded-lg font-semibold shadow-sm border border-teal-100 hover:bg-teal-50 transition-all mb-2"
+                className="flex items-center gap-2 px-4 py-2 bg-white dark:bg-slate-800 text-teal-600 rounded-lg font-semibold shadow-sm border border-teal-100 hover:bg-teal-50 dark:bg-slate-700 transition-all mb-2"
               >
                 Modifier le profil
               </button>
@@ -334,87 +334,87 @@ export default function ProfilePage() {
 
         {/* Stats Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
-          <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+          <div className="bg-white dark:bg-slate-800 p-6 rounded-xl shadow-sm border border-gray-100">
             <div className="flex items-center justify-between mb-4">
-              <div className="p-3 bg-teal-50 rounded-lg">
+              <div className="p-3 bg-teal-50 dark:bg-slate-700 rounded-lg">
                 <BookOpen className="w-6 h-6 text-teal-600" />
               </div>
-              <span className="text-xs font-semibold text-teal-600 bg-teal-50 px-2 py-1 rounded-full">
+              <span className="text-xs font-semibold text-teal-600 bg-teal-50 dark:bg-slate-700 px-2 py-1 rounded-full">
                 Total
               </span>
             </div>
-            <p className="text-3xl font-bold text-gray-800">{userStats.totalQcmsCompleted}</p>
-            <p className="text-sm text-gray-600 mt-2">QCMs complétés</p>
+            <p className="text-3xl font-bold text-gray-800 dark:text-white">{userStats.totalQcmsCompleted}</p>
+            <p className="text-sm text-gray-600 dark:text-gray-400 mt-2">QCMs complétés</p>
           </div>
 
-          <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+          <div className="bg-white dark:bg-slate-800 p-6 rounded-xl shadow-sm border border-gray-100">
             <div className="flex items-center justify-between mb-4">
-              <div className="p-3 bg-blue-50 rounded-lg">
+              <div className="p-3 bg-blue-50 dark:bg-slate-700 rounded-lg">
                 <Award className="w-6 h-6 text-blue-600" />
               </div>
-              <span className="text-xs font-semibold text-blue-600 bg-blue-50 px-2 py-1 rounded-full">
+              <span className="text-xs font-semibold text-blue-600 bg-blue-50 dark:bg-slate-700 px-2 py-1 rounded-full">
                 Moyenne
               </span>
             </div>
-            <p className="text-3xl font-bold text-gray-800">{userStats.avgScore}%</p>
-            <p className="text-sm text-gray-600 mt-2">Score moyen</p>
+            <p className="text-3xl font-bold text-gray-800 dark:text-white">{userStats.avgScore}%</p>
+            <p className="text-sm text-gray-600 dark:text-gray-400 mt-2">Score moyen</p>
           </div>
 
-          <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+          <div className="bg-white dark:bg-slate-800 p-6 rounded-xl shadow-sm border border-gray-100">
             <div className="flex items-center justify-between mb-4">
-              <div className="p-3 bg-green-50 rounded-lg">
+              <div className="p-3 bg-green-50 dark:bg-slate-700 rounded-lg">
                 <Zap className="w-6 h-6 text-green-600" />
               </div>
-              <span className="text-xs font-semibold text-green-600 bg-green-50 px-2 py-1 rounded-full">
+              <span className="text-xs font-semibold text-green-600 bg-green-50 dark:bg-slate-700 px-2 py-1 rounded-full">
                 Record
               </span>
             </div>
-            <p className="text-3xl font-bold text-gray-800">{userStats.bestScore}%</p>
-            <p className="text-sm text-gray-600 mt-2">Meilleur score</p>
+            <p className="text-3xl font-bold text-gray-800 dark:text-white">{userStats.bestScore}%</p>
+            <p className="text-sm text-gray-600 dark:text-gray-400 mt-2">Meilleur score</p>
           </div>
 
-          <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+          <div className="bg-white dark:bg-slate-800 p-6 rounded-xl shadow-sm border border-gray-100">
             <div className="flex items-center justify-between mb-4">
-              <div className="p-3 bg-orange-50 rounded-lg">
+              <div className="p-3 bg-orange-50 dark:bg-slate-700 rounded-lg">
                 <Clock className="w-6 h-6 text-orange-600" />
               </div>
-              <span className="text-xs font-semibold text-orange-600 bg-orange-50 px-2 py-1 rounded-full">
+              <span className="text-xs font-semibold text-orange-600 bg-orange-50 dark:bg-slate-700 px-2 py-1 rounded-full">
                 Total
               </span>
             </div>
-            <p className="text-3xl font-bold text-gray-800">{userStats.totalTimeSpent}h</p>
-            <p className="text-sm text-gray-600 mt-2">Temps d&apos;étude total</p>
+            <p className="text-3xl font-bold text-gray-800 dark:text-white">{userStats.totalTimeSpent}h</p>
+            <p className="text-sm text-gray-600 dark:text-gray-400 mt-2">Temps d&apos;étude total</p>
           </div>
         </div>
 
         {/* Account Settings Section */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {/* Personal Information */}
-          <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
-            <h2 className="text-xl font-semibold text-gray-800 mb-6 flex items-center gap-2">
+          <div className="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-gray-100 p-6">
+            <h2 className="text-xl font-semibold text-gray-800 dark:text-white mb-6 flex items-center gap-2">
               <Zap className="w-5 h-5 text-teal-600" />
               Informations personnelles
             </h2>
             <div className="space-y-4">
               <div>
                 <label className="text-sm text-gray-500 font-medium">Prénom</label>
-                <p className="text-gray-800 font-medium mt-1">{userData.firstname || "Non spécifié"}</p>
+                <p className="text-gray-800 dark:text-white font-medium mt-1">{userData.firstname || "Non spécifié"}</p>
               </div>
               <div>
                 <label className="text-sm text-gray-500 font-medium">Nom</label>
-                <p className="text-gray-800 font-medium mt-1">{userData.lastname || "Non spécifié"}</p>
+                <p className="text-gray-800 dark:text-white font-medium mt-1">{userData.lastname || "Non spécifié"}</p>
               </div>
               <div>
                 <label className="text-sm text-gray-500 font-medium">Email</label>
-                <p className="text-gray-800 font-medium mt-1">{userData.email}</p>
+                <p className="text-gray-800 dark:text-white font-medium mt-1">{userData.email}</p>
               </div>
               <div>
                 <label className="text-sm text-gray-500 font-medium">Année académique</label>
-                <p className="text-gray-800 font-medium mt-1">{userData.academicyear || "Non spécifiée"}</p>
+                <p className="text-gray-800 dark:text-white font-medium mt-1">{userData.academicyear || "Non spécifiée"}</p>
               </div>
               <button
                 onClick={() => setIsEditModalOpen(true)}
-                className="w-full mt-6 px-4 py-3 bg-teal-50 text-teal-600 rounded-lg font-semibold hover:bg-teal-100 transition-all border border-teal-200"
+                className="w-full mt-6 px-4 py-3 bg-teal-50 dark:bg-slate-700 text-teal-600 rounded-lg font-semibold hover:bg-teal-100 transition-all border border-teal-200"
               >
                 Modifier les informations
               </button>
@@ -422,39 +422,39 @@ export default function ProfilePage() {
           </div>
 
           {/* Security & Privacy */}
-          <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
-            <h2 className="text-xl font-semibold text-gray-800 mb-6 flex items-center gap-2">
+          <div className="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-gray-100 p-6">
+            <h2 className="text-xl font-semibold text-gray-800 dark:text-white mb-6 flex items-center gap-2">
               <Zap className="w-5 h-5 text-blue-600" />
               Sécurité & Confidentialité
             </h2>
             <div className="space-y-4">
               <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
                 <div>
-                  <p className="font-medium text-gray-800">Mot de passe</p>
+                  <p className="font-medium text-gray-800 dark:text-white">Mot de passe</p>
                   <p className="text-sm text-gray-500">Dernière modification il y a 3 mois</p>
                 </div>
                 <button
                   onClick={() => setIsPasswordModalOpen(true)}
-                  className="px-4 py-2 text-sm font-semibold text-blue-600 hover:bg-blue-50 rounded-lg transition-all"
+                  className="px-4 py-2 text-sm font-semibold text-blue-600 hover:bg-blue-50 dark:bg-slate-700 rounded-lg transition-all"
                 >
                   Changer
                 </button>
               </div>
               <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
                 <div>
-                  <p className="font-medium text-gray-800">Authentification à deux facteurs</p>
+                  <p className="font-medium text-gray-800 dark:text-white">Authentification à deux facteurs</p>
                   <p className="text-sm text-gray-500">Non activée</p>
                 </div>
-                <button className="px-4 py-2 text-sm font-semibold text-blue-600 hover:bg-blue-50 rounded-lg transition-all cursor-not-allowed opacity-50">
+                <button className="px-4 py-2 text-sm font-semibold text-blue-600 hover:bg-blue-50 dark:bg-slate-700 rounded-lg transition-all cursor-not-allowed opacity-50">
                   Activer
                 </button>
               </div>
               <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
                 <div>
-                  <p className="font-medium text-gray-800">Sessions actives</p>
+                  <p className="font-medium text-gray-800 dark:text-white">Sessions actives</p>
                   <p className="text-sm text-gray-500">1 appareil connecté</p>
                 </div>
-                <button className="px-4 py-2 text-sm font-semibold text-blue-600 hover:bg-blue-50 rounded-lg transition-all cursor-not-allowed opacity-50">
+                <button className="px-4 py-2 text-sm font-semibold text-blue-600 hover:bg-blue-50 dark:bg-slate-700 rounded-lg transition-all cursor-not-allowed opacity-50">
                   Gérer
                 </button>
               </div>
@@ -463,18 +463,18 @@ export default function ProfilePage() {
         </div>
 
         {/* Preferences Section */}
-        <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
-          <h2 className="text-xl font-semibold text-gray-800 mb-6 flex items-center gap-2">
+        <div className="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-gray-100 p-6">
+          <h2 className="text-xl font-semibold text-gray-800 dark:text-white mb-6 flex items-center gap-2">
             <Zap className="w-5 h-5 text-purple-600" />
             Préférences
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
-              <label className="text-sm text-gray-600 font-medium">Langue</label>
+              <label className="text-sm text-gray-600 dark:text-gray-400 font-medium">Langue</label>
               <select
                 value={preferences.language}
                 onChange={(e) => handlePreferencesChange("language", e.target.value)}
-                className="w-full mt-2 px-4 py-2 border border-gray-200 rounded-lg text-gray-900 focus:outline-none focus:border-teal-500"
+                className="w-full mt-2 px-4 py-2 border border-gray-200 dark:border-slate-700 rounded-lg text-gray-900 focus:outline-none focus:border-teal-500"
               >
                 <option value="fr">Français</option>
                 <option value="en">English</option>
@@ -490,7 +490,7 @@ export default function ProfilePage() {
                 onChange={(e) => handlePreferencesChange("emailNotifications", e.target.checked)}
                 className="w-5 h-5 text-teal-600 rounded"
               />
-              <span className="text-gray-700">Recevoir les notifications par email</span>
+              <span className="text-gray-700 dark:text-gray-200">Recevoir les notifications par email</span>
             </label>
             <label className="flex items-center gap-3 cursor-pointer">
               <input
@@ -499,7 +499,7 @@ export default function ProfilePage() {
                 onChange={(e) => handlePreferencesChange("qcmReminders", e.target.checked)}
                 className="w-5 h-5 text-teal-600 rounded"
               />
-              <span className="text-gray-700">Recevoir les rappels de QCM</span>
+              <span className="text-gray-700 dark:text-gray-200">Recevoir les rappels de QCM</span>
             </label>
             <label className="flex items-center gap-3 cursor-pointer">
               <input
@@ -508,7 +508,7 @@ export default function ProfilePage() {
                 onChange={(e) => handlePreferencesChange("shareStatistics", e.target.checked)}
                 className="w-5 h-5 text-teal-600 rounded"
               />
-              <span className="text-gray-700">Partager mes statistiques avec les autres</span>
+              <span className="text-gray-700 dark:text-gray-200">Partager mes statistiques avec les autres</span>
             </label>
           </div>
         </div>

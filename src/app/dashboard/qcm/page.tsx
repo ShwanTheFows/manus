@@ -176,7 +176,7 @@ export default function QcmPreparationPage() {
   if (loading) {
     return (
       <DashboardLayout key={Date.now()}>
-        <div className="flex justify-center items-center h-screen text-gray-600">
+        <div className="flex justify-center items-center h-screen text-gray-600 dark:text-gray-400">
           Chargement des QCMs...
         </div>
       </DashboardLayout>
@@ -187,12 +187,12 @@ export default function QcmPreparationPage() {
     <DashboardLayout key={Date.now()}>
       <div className="flex flex-col pt-6 md:flex-row bg-gray-50 min-h-screen">
         {sidebarOpen && (
-          <aside className="w-full md:w-72 bg-white border-r border-gray-200 p-4 md:block shadow-sm">
+          <aside className="w-full md:w-72 bg-white dark:bg-slate-800 border-r border-gray-200 dark:border-slate-700 p-4 md:block shadow-sm">
             <div className="flex justify-between items-center mb-6">
-              <h3 className="font-semibold text-gray-800 text-lg">Filtres</h3>
+              <h3 className="font-semibold text-gray-800 dark:text-white text-lg">Filtres</h3>
               <button
                 onClick={() => setSidebarOpen(false)}
-                className="md:hidden text-gray-500 hover:text-gray-700 p-1 rounded-full hover:bg-gray-100"
+                className="md:hidden text-gray-500 hover:text-gray-700 dark:text-gray-200 p-1 rounded-full hover:bg-gray-100 dark:bg-slate-700"
               >
                 <X size={20} />
               </button>
@@ -200,7 +200,7 @@ export default function QcmPreparationPage() {
 
             <div className="space-y-6">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">
                   Recherche
                 </label>
                 <div className="relative">
@@ -208,7 +208,7 @@ export default function QcmPreparationPage() {
                   <input
                     type="text"
                     placeholder="Rechercher un QCM..."
-                    className="w-full pl-10 pr-4 py-2 rounded-lg border border-gray-300 bg-white text-gray-800 focus:ring-2 focus:ring-teal-500 focus:border-transparent"
+                    className="w-full pl-10 pr-4 py-2 rounded-lg border border-gray-300 bg-white dark:bg-slate-800 text-gray-800 dark:text-white focus:ring-2 focus:ring-teal-500 focus:border-transparent"
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
                   />
@@ -216,11 +216,11 @@ export default function QcmPreparationPage() {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">
                   Année d&apos;étude
                 </label>
                 <select
-                  className="w-full rounded-lg border border-gray-300 bg-white text-gray-800 p-2 focus:ring-2 focus:ring-teal-500 focus:border-transparent"
+                  className="w-full rounded-lg border border-gray-300 bg-white dark:bg-slate-800 text-gray-800 dark:text-white p-2 focus:ring-2 focus:ring-teal-500 focus:border-transparent"
                   value={selectedYear}
                   onChange={(e) =>
                     setSelectedYear(
@@ -236,7 +236,7 @@ export default function QcmPreparationPage() {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">
                   Difficulté
                 </label>
                 <div className="flex flex-col space-y-2">
@@ -244,7 +244,7 @@ export default function QcmPreparationPage() {
                     (difficulty) => (
                       <label
                         key={difficulty}
-                        className="flex items-center space-x-3 cursor-pointer transition-all duration-200 hover:bg-gray-50 rounded-lg p-2"
+                        className="flex items-center space-x-3 cursor-pointer transition-all duration-200 hover:bg-gray-50 dark:hover:bg-slate-700 rounded-lg p-2"
                       >
                         <input
                           type="radio"
@@ -257,7 +257,7 @@ export default function QcmPreparationPage() {
                           className={`text-sm ${
                             selectedDifficulty === difficulty
                               ? "text-teal-600 font-medium"
-                              : "text-gray-600"
+                              : "text-gray-600 dark:text-gray-400"
                           }`}
                         >
                           {difficulty === "all"
@@ -269,7 +269,7 @@ export default function QcmPreparationPage() {
                   )}
                 </div>
               </div>
-              <div className="pt-4 border-t border-gray-200">
+              <div className="pt-4 border-t border-gray-200 dark:border-slate-700">
                 <button
                   className="w-full flex items-center justify-center gap-2 text-sm font-medium text-teal-600 hover:text-teal-700 px-3 py-2 bg-teal-50 rounded-lg hover:bg-teal-100 transition-colors"
                   onClick={resetFilters}
@@ -286,10 +286,10 @@ export default function QcmPreparationPage() {
           <div className="space-y-6">
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
               <div>
-                <h1 className="text-2xl font-bold text-gray-800">
+                <h1 className="text-2xl font-bold text-gray-800 dark:text-white">
                   Préparation aux QCMs
                 </h1>
-                <p className="text-gray-600 mt-1">
+                <p className="text-gray-600 dark:text-gray-400 mt-1">
                   {filteredModules.flatMap((m) => m.qcms).length} QCMs
                   disponibles
                 </p>
@@ -301,16 +301,16 @@ export default function QcmPreparationPage() {
                   <input
                     type="text"
                     placeholder="Rechercher un QCM..."
-                    className="w-full pl-10 pr-4 py-2 rounded-lg border border-gray-300 bg-white text-gray-800 focus:ring-2 focus:ring-teal-500 focus:border-transparent"
+                    className="w-full pl-10 pr-4 py-2 rounded-lg border border-gray-300 bg-white dark:bg-slate-800 text-gray-800 dark:text-white focus:ring-2 focus:ring-teal-500 focus:border-transparent"
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
                   />
                 </div>
                 <button
                   onClick={() => setSidebarOpen(!sidebarOpen)}
-                  className="p-2 rounded-lg bg-white border border-gray-200 hover:bg-gray-50 transition-colors flex items-center gap-2"
+                  className="p-2 rounded-lg bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 hover:bg-gray-50 dark:hover:bg-slate-700 transition-colors flex items-center gap-2"
                 >
-                  <Filter size={18} className="text-gray-600" />
+                  <Filter size={18} className="text-gray-600 dark:text-gray-400" />
                   <span className="hidden md:inline text-sm font-medium">
                     Filtres
                   </span>
@@ -319,15 +319,15 @@ export default function QcmPreparationPage() {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-5">
+              <div className="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-gray-200 dark:border-slate-700 p-5">
                 <div className="flex items-center gap-3 mb-3">
                   <div className="p-2 bg-teal-100 rounded-lg">
                     <CheckCircle className="w-5 h-5 text-teal-600" />
                   </div>
-                  <h3 className="font-medium text-gray-700">Complétion</h3>
+                  <h3 className="font-medium text-gray-700 dark:text-gray-200">Complétion</h3>
                 </div>
                 <div className="flex items-end gap-2">
-                  <span className="text-3xl font-bold text-gray-800">
+                  <span className="text-3xl font-bold text-gray-800 dark:text-white">
                     {overallStats.overallCompletion}%
                   </span>
                   <span className="text-sm text-gray-500 mb-1">
@@ -342,15 +342,15 @@ export default function QcmPreparationPage() {
                 </div>
               </div>
 
-              <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-5">
+              <div className="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-gray-200 dark:border-slate-700 p-5">
                 <div className="flex items-center gap-3 mb-3">
                   <div className="p-2 bg-blue-100 rounded-lg">
                     <Star className="w-5 h-5 text-blue-600" fill="#3b82f6" />
                   </div>
-                  <h3 className="font-medium text-gray-700">Score moyen</h3>
+                  <h3 className="font-medium text-gray-700 dark:text-gray-200">Score moyen</h3>
                 </div>
                 <div className="flex items-end gap-2">
-                  <span className="text-3xl font-bold text-gray-800">
+                  <span className="text-3xl font-bold text-gray-800 dark:text-white">
                     {overallStats.avgScore}%
                   </span>
                   <span className="text-sm text-gray-500 mb-1">
@@ -365,15 +365,15 @@ export default function QcmPreparationPage() {
                 </div>
               </div>
 
-              <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-5">
+              <div className="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-gray-200 dark:border-slate-700 p-5">
                 <div className="flex items-center gap-3 mb-3">
                   <div className="p-2 bg-purple-100 rounded-lg">
                     <Clock className="w-5 h-5 text-purple-600" />
                   </div>
-                  <h3 className="font-medium text-gray-700">Temps moyen</h3>
+                  <h3 className="font-medium text-gray-700 dark:text-gray-200">Temps moyen</h3>
                 </div>
                 <div className="flex items-end gap-2">
-                  <span className="text-3xl font-bold text-gray-800">
+                  <span className="text-3xl font-bold text-gray-800 dark:text-white">
                     {averageTime}min
                   </span>
                   <span className="text-sm text-gray-500 mb-1">par QCM</span>
@@ -384,8 +384,8 @@ export default function QcmPreparationPage() {
               </div>
             </div>
 
-            <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-              <h2 className="text-xl font-semibold text-gray-800 mb-4">
+            <div className="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-gray-200 dark:border-slate-700 p-6">
+              <h2 className="text-xl font-semibold text-gray-800 dark:text-white mb-4">
                 Progression par matière
               </h2>
 
@@ -436,10 +436,10 @@ export default function QcmPreparationPage() {
                 filteredModules.map((module) => (
                   <div
                     key={module.id}
-                    className="bg-white rounded-xl shadow-sm border border-gray-200 hover:border-teal-500 transition-colors overflow-hidden"
+                    className="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-gray-200 dark:border-slate-700 hover:border-teal-500 transition-colors overflow-hidden"
                   >
                     <button
-                      className="w-full p-5 flex items-center justify-between hover:bg-gray-50 transition-colors"
+                      className="w-full p-5 flex items-center justify-between hover:bg-gray-50 dark:hover:bg-slate-700 transition-colors"
                       onClick={() =>
                         setExpandedModule(
                           expandedModule === module.id ? null : module.id
@@ -460,11 +460,11 @@ export default function QcmPreparationPage() {
                           <Book className="w-6 h-6" />
                         </div>
                         <div className="text-left">
-                          <h3 className="font-semibold text-gray-800">
+                          <h3 className="font-semibold text-gray-800 dark:text-white">
                             {module.name}
                           </h3>
                           <div className="flex flex-wrap items-center gap-2 mt-1">
-                            <span className="text-xs px-2 py-1 bg-gray-100 text-gray-600 rounded-full">
+                            <span className="text-xs px-2 py-1 bg-gray-100 dark:bg-slate-700 text-gray-600 dark:text-gray-400 rounded-full">
                               {module.qcms.length} QCM
                               {module.qcms.length > 1 ? "s" : ""}
                             </span>
@@ -500,11 +500,11 @@ export default function QcmPreparationPage() {
                     </button>
 
                     {expandedModule === module.id && (
-                      <div className="border-t border-gray-200 divide-y divide-gray-200">
+                      <div className="border-t border-gray-200 dark:border-slate-700 divide-y divide-gray-200">
                         {module.qcms.map((qcm) => (
                           <div
                             key={qcm.id}
-                            className="flex flex-col md:flex-row md:items-center justify-between p-4 hover:bg-gray-50 transition-colors gap-3"
+                            className="flex flex-col md:flex-row md:items-center justify-between p-4 hover:bg-gray-50 dark:hover:bg-slate-700 transition-colors gap-3"
                           >
                             <div className="flex-1">
                               <div className="flex items-start gap-3">
@@ -514,19 +514,19 @@ export default function QcmPreparationPage() {
                                   </div>
                                 ) : (
                                   <div className="mt-1 p-1 bg-gray-200 rounded-full">
-                                    <Book className="w-4 h-4 text-gray-600" />
+                                    <Book className="w-4 h-4 text-gray-600 dark:text-gray-400" />
                                   </div>
                                 )}
                                 <div>
-                                  <h3 className="font-medium text-gray-800">
+                                  <h3 className="font-medium text-gray-800 dark:text-white">
                                     {qcm.title}
                                   </h3>
                                   <div className="flex flex-wrap items-center gap-2 mt-2">
-                                    <span className="text-xs px-2 py-1 bg-gray-100 text-gray-600 rounded-full flex items-center gap-1">
+                                    <span className="text-xs px-2 py-1 bg-gray-100 dark:bg-slate-700 text-gray-600 dark:text-gray-400 rounded-full flex items-center gap-1">
                                       <Clock className="w-3 h-3" />
                                       {qcm.duration}
                                     </span>
-                                    <span className="text-xs px-2 py-1 bg-gray-100 text-gray-600 rounded-full">
+                                    <span className="text-xs px-2 py-1 bg-gray-100 dark:bg-slate-700 text-gray-600 dark:text-gray-400 rounded-full">
                                       {qcm.totalQuestions} questions
                                     </span>
                                     <span
@@ -537,7 +537,7 @@ export default function QcmPreparationPage() {
                                       {qcm.difficulty}
                                     </span>
                                     {qcm.year && (
-                                      <span className="text-xs px-2 py-1 bg-gray-100 text-gray-600 rounded-full">
+                                      <span className="text-xs px-2 py-1 bg-gray-100 dark:bg-slate-700 text-gray-600 dark:text-gray-400 rounded-full">
                                         Année {qcm.year}
                                       </span>
                                     )}
@@ -563,7 +563,7 @@ export default function QcmPreparationPage() {
                                         className="w-4 h-4 text-yellow-500"
                                         fill="#eab308"
                                       />
-                                      <span className="text-sm font-medium text-gray-700">
+                                      <span className="text-sm font-medium text-gray-700 dark:text-gray-200">
                                         {qcm.score}%
                                       </span>
                                     </div>
@@ -571,7 +571,7 @@ export default function QcmPreparationPage() {
                                       Score
                                     </div>
                                   </div>
-                                  <button className="text-sm px-4 py-2 bg-white border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors flex items-center gap-2"
+                                  <button className="text-sm px-4 py-2 bg-white dark:bg-slate-800 border border-gray-300 text-gray-700 dark:text-gray-200 rounded-lg hover:bg-gray-50 dark:hover:bg-slate-700 transition-colors flex items-center gap-2"
                                     onClick={async () => {
                                       try {
                                         await fetch(`/api/qcms/${qcm.id}/retry`, { method: "POST" });
@@ -599,11 +599,11 @@ export default function QcmPreparationPage() {
                   </div>
                 ))
               ) : (
-                <div className="text-center py-12 bg-white rounded-xl shadow-sm border border-gray-200">
-                  <div className="mx-auto w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center mb-4">
+                <div className="text-center py-12 bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-gray-200 dark:border-slate-700">
+                  <div className="mx-auto w-24 h-24 bg-gray-100 dark:bg-slate-700 rounded-full flex items-center justify-center mb-4">
                     <Search className="w-10 h-10 text-gray-400" />
                   </div>
-                  <h3 className="text-lg font-medium text-gray-800 mb-1">
+                  <h3 className="text-lg font-medium text-gray-800 dark:text-white mb-1">
                     Aucun QCM trouvé
                   </h3>
                   <p className="text-gray-500">

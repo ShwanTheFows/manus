@@ -15,7 +15,7 @@ export function Sidebar({ isOpen }: { isOpen: boolean }) {
   ];
 
   return (
-    <aside className={`fixed left-0 top-0 z-40 h-screen w-[280px] transform border-r border-gray-100 bg-white pt-16 transition-transform duration-300 
+    <aside className={`fixed left-0 top-0 z-40 h-screen w-[280px] transform border-r border-gray-100 bg-white dark:bg-slate-800 pt-16 transition-transform duration-300 
       ${isOpen ? "translate-x-0" : "-translate-x-full"} 
       lg:translate-x-0`}>
       <div className="px-6 py-6 flex-1 flex flex-col">
@@ -30,7 +30,7 @@ export function Sidebar({ isOpen }: { isOpen: boolean }) {
                 className={`flex items-center gap-4 px-5 py-4 rounded-lg text-base font-medium transition-all ${
                   isActive
                     ? "bg-teal-50 text-teal-700"
-                    : "text-gray-600 hover:bg-gray-50 hover:text-teal-600"
+                    : "text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-slate-700 hover:text-teal-600"
                 }`}
               >
                 <span className={`${isActive ? 'text-teal-600' : 'text-gray-400'}`}>

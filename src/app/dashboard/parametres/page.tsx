@@ -187,8 +187,8 @@ export default function ParametresPage() {
       <div className="space-y-6 p-4 md:p-6 bg-gray-50 min-h-screen">
         {/* Header */}
         <div>
-          <h1 className="text-3xl font-bold text-gray-800">Paramètres</h1>
-          <p className="text-gray-600 mt-1">Gérez vos préférences et votre sécurité</p>
+          <h1 className="text-3xl font-bold text-gray-800 dark:text-white">Paramètres</h1>
+          <p className="text-gray-600 dark:text-gray-400 mt-1">Gérez vos préférences et votre sécurité</p>
         </div>
 
         {/* Messages */}
@@ -210,15 +210,15 @@ export default function ParametresPage() {
         )}
 
         {/* Account Settings */}
-        <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
-          <h2 className="text-xl font-semibold text-gray-800 mb-6 flex items-center gap-2">
+        <div className="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-gray-100 p-6">
+          <h2 className="text-xl font-semibold text-gray-800 dark:text-white mb-6 flex items-center gap-2">
             <Settings className="w-5 h-5 text-teal-600" />
             Informations du compte
           </h2>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">Prénom</label>
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">Prénom</label>
               <input
                 type="text"
                 value={settings.firstname}
@@ -228,7 +228,7 @@ export default function ParametresPage() {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">Nom</label>
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">Nom</label>
               <input
                 type="text"
                 value={settings.lastname}
@@ -238,7 +238,7 @@ export default function ParametresPage() {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">Ville</label>
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">Ville</label>
               <select
                 value={settings.city}
                 onChange={(e) => handleSettingChange("city", e.target.value)}
@@ -254,7 +254,7 @@ export default function ParametresPage() {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">Année académique</label>
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">Année académique</label>
               <input
                 type="text"
                 value={settings.academicyear}
@@ -264,7 +264,7 @@ export default function ParametresPage() {
             </div>
 
             <div className="md:col-span-2">
-              <label className="block text-sm font-medium text-gray-700 mb-2">Email</label>
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">Email</label>
               <input
                 type="email"
                 value={settings.email}
@@ -286,14 +286,14 @@ export default function ParametresPage() {
         </div>
 
         {/* Notifications & Preferences */}
-        <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
-          <h2 className="text-xl font-semibold text-gray-800 mb-6 flex items-center gap-2">
+        <div className="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-gray-100 p-6">
+          <h2 className="text-xl font-semibold text-gray-800 dark:text-white mb-6 flex items-center gap-2">
             <Bell className="w-5 h-5 text-blue-600" />
             Notifications et préférences
           </h2>
 
           <div className="space-y-4">
-            <label className="flex items-center gap-3 p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-all cursor-pointer">
+            <label className="flex items-center gap-3 p-4 bg-gray-50 rounded-lg hover:bg-gray-100 dark:bg-slate-700 transition-all cursor-pointer">
               <input
                 type="checkbox"
                 checked={settings.emailNotifications}
@@ -301,12 +301,12 @@ export default function ParametresPage() {
                 className="w-5 h-5 text-teal-600 rounded cursor-pointer"
               />
               <div className="flex-1">
-                <p className="font-medium text-gray-800">Recevoir les notifications par email</p>
-                <p className="text-sm text-gray-600">Soyez informé des mises à jour importantes</p>
+                <p className="font-medium text-gray-800 dark:text-white">Recevoir les notifications par email</p>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Soyez informé des mises à jour importantes</p>
               </div>
             </label>
 
-            <label className="flex items-center gap-3 p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-all cursor-pointer">
+            <label className="flex items-center gap-3 p-4 bg-gray-50 rounded-lg hover:bg-gray-100 dark:bg-slate-700 transition-all cursor-pointer">
               <input
                 type="checkbox"
                 checked={settings.qcmReminders}
@@ -314,12 +314,12 @@ export default function ParametresPage() {
                 className="w-5 h-5 text-teal-600 rounded cursor-pointer"
               />
               <div className="flex-1">
-                <p className="font-medium text-gray-800">Recevoir les rappels de QCM</p>
-                <p className="text-sm text-gray-600">Recevez des rappels pour continuer vos études</p>
+                <p className="font-medium text-gray-800 dark:text-white">Recevoir les rappels de QCM</p>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Recevez des rappels pour continuer vos études</p>
               </div>
             </label>
 
-            <label className="flex items-center gap-3 p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-all cursor-pointer">
+            <label className="flex items-center gap-3 p-4 bg-gray-50 rounded-lg hover:bg-gray-100 dark:bg-slate-700 transition-all cursor-pointer">
               <input
                 type="checkbox"
                 checked={settings.shareStatistics}
@@ -327,8 +327,8 @@ export default function ParametresPage() {
                 className="w-5 h-5 text-teal-600 rounded cursor-pointer"
               />
               <div className="flex-1">
-                <p className="font-medium text-gray-800">Partager mes statistiques</p>
-                <p className="text-sm text-gray-600">Permettre aux autres utilisateurs de voir vos performances</p>
+                <p className="font-medium text-gray-800 dark:text-white">Partager mes statistiques</p>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Permettre aux autres utilisateurs de voir vos performances</p>
               </div>
             </label>
           </div>
@@ -344,8 +344,8 @@ export default function ParametresPage() {
         </div>
 
         {/* Security Settings */}
-        <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
-          <h2 className="text-xl font-semibold text-gray-800 mb-6 flex items-center gap-2">
+        <div className="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-gray-100 p-6">
+          <h2 className="text-xl font-semibold text-gray-800 dark:text-white mb-6 flex items-center gap-2">
             <Lock className="w-5 h-5 text-red-600" />
             Sécurité
           </h2>
@@ -369,7 +369,7 @@ export default function ParametresPage() {
 
           <form onSubmit={handlePasswordChange} className="space-y-4">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">Mot de passe actuel</label>
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">Mot de passe actuel</label>
               <div className="relative">
                 <input
                   type={passwordForm.showCurrent ? "text" : "password"}
@@ -381,7 +381,7 @@ export default function ParametresPage() {
                 <button
                   type="button"
                   onClick={() => setPasswordForm({ ...passwordForm, showCurrent: !passwordForm.showCurrent })}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-700"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-700 dark:text-gray-200"
                 >
                   {passwordForm.showCurrent ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
                 </button>
@@ -389,7 +389,7 @@ export default function ParametresPage() {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">Nouveau mot de passe</label>
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">Nouveau mot de passe</label>
               <div className="relative">
                 <input
                   type={passwordForm.showNew ? "text" : "password"}
@@ -401,7 +401,7 @@ export default function ParametresPage() {
                 <button
                   type="button"
                   onClick={() => setPasswordForm({ ...passwordForm, showNew: !passwordForm.showNew })}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-700"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-700 dark:text-gray-200"
                 >
                   {passwordForm.showNew ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
                 </button>
@@ -409,7 +409,7 @@ export default function ParametresPage() {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">Confirmer le mot de passe</label>
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">Confirmer le mot de passe</label>
               <div className="relative">
                 <input
                   type={passwordForm.showConfirm ? "text" : "password"}
@@ -421,7 +421,7 @@ export default function ParametresPage() {
                 <button
                   type="button"
                   onClick={() => setPasswordForm({ ...passwordForm, showConfirm: !passwordForm.showConfirm })}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-700"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-700 dark:text-gray-200"
                 >
                   {passwordForm.showConfirm ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
                 </button>

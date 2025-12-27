@@ -1,9 +1,10 @@
 "use client";
-import { Menu, Bell, Sun, LogOut, Settings, User } from "lucide-react";
+import { Menu, Bell, Sun, Moon, LogOut, Settings, User } from "lucide-react";
 import { signOut, useSession } from "next-auth/react";
 import { Dispatch, SetStateAction, useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { useTheme } from "./ThemeProvider";
 
 interface UserData {
   firstname: string;
@@ -14,6 +15,7 @@ interface UserData {
 
 export function Navbar({ setIsSidebarOpen }: { setIsSidebarOpen: Dispatch<SetStateAction<boolean>> }) {
   const { data: session } = useSession();
+  const { theme, toggleTheme } = useTheme();
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [userData, setUserData] = useState<UserData | null>(null);
   const [loading, setLoading] = useState(false);
@@ -91,7 +93,7 @@ export function Navbar({ setIsSidebarOpen }: { setIsSidebarOpen: Dispatch<SetSta
   const profilePicture = getProfilePicture();
 
   return (
-    <header className="fixed top-0 left-0 right-0 bg-white px-4 sm:px-6 py-4 shadow-sm z-50 border-b border-gray-200 transition-colors">
+    <header className="fixed top-0 left-0 right-0 bg-white dark:bg-slate-900 px-4 sm:px-6 py-4 shadow-sm z-50 border-b border-gray-200 dark:border-slate-700 transition-colors">
       <div className="flex justify-between items-center w-full">
         <div className="flex items-center ml-8 md:ml-12">
           <button
@@ -112,18 +114,26 @@ export function Navbar({ setIsSidebarOpen }: { setIsSidebarOpen: Dispatch<SetSta
         </div>
 
         <div className="flex items-center gap-2 sm:gap-4 mr-8 md:mr-12">
-          <button className="p-2 rounded-full hover:bg-gray-100 transition-colors">
-            <Sun className="w-5 h-5 text-gray-600" />
+          <button
+            onClick={toggleTheme}
+            className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-slate-800 transition-colors"
+            aria-label="Toggle theme"
+          >
+            {theme === "light" ? (
+              <Moon className="w-5 h-5 text-gray-600" />
+            ) : (
+              <Sun className="w-5 h-5 text-yellow-400" />
+            )}
           </button>
-          <button className="p-2 rounded-full hover:bg-gray-100 transition-colors">
-            <Bell className="w-5 h-5 text-gray-600" />
+          <button className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-slate-800 transition-colors">
+            <Bell className="w-5 h-5 text-gray-600 dark:text-gray-400" />
           </button>
 
           {/* User Profile Dropdown */}
           <div className="relative" ref={dropdownRef}>
             <button
               onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-              className="flex items-center gap-2 p-1 rounded-full hover:bg-gray-100 transition-colors focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2"
+              className="flex items-center gap-2 p-1 rounded-full hover:bg-gray-100 dark:hover:bg-slate-800 transition-colors focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2 dark:focus:ring-offset-slate-900"
               aria-expanded={isDropdownOpen}
               aria-haspopup="true"
             >
@@ -145,9 +155,9 @@ export function Navbar({ setIsSidebarOpen }: { setIsSidebarOpen: Dispatch<SetSta
 
             {/* Dropdown Menu */}
             {isDropdownOpen && (
-              <div className="absolute right-0 mt-2 w-64 bg-white rounded-lg shadow-lg border border-gray-200 overflow-hidden z-50 animate-in fade-in slide-in-from-top-2">
+              <div className="absolute right-0 mt-2 w-64 bg-white dark:bg-slate-800 rounded-lg shadow-lg border border-gray-200 dark:border-slate-700 overflow-hidden z-50 animate-in fade-in slide-in-from-top-2">
                 {/* User Info Section */}
-                <div className="px-4 py-4 border-b border-gray-200 bg-gradient-to-r from-teal-50 to-blue-50">
+                <div className="px-4 py-4 border-b border-gray-200 dark:border-slate-700 bg-gradient-to-r from-teal-50 to-blue-50 dark:from-slate-700 dark:to-slate-600">
                   <div className="flex items-center gap-3">
                     {profilePicture ? (
                       <div className="relative w-12 h-12">
@@ -164,10 +174,10 @@ export function Navbar({ setIsSidebarOpen }: { setIsSidebarOpen: Dispatch<SetSta
                       </div>
                     )}
                     <div className="flex-1 min-w-0">
-                      <p className="font-semibold text-gray-800 truncate">
+                      <p className="font-semibold text-gray-800 dark:text-white truncate">
                         {userName}
                       </p>
-                      <p className="text-xs text-gray-600 truncate">
+                      <p className="text-xs text-gray-600 dark:text-gray-400 truncate">
                         {userEmail}
                       </p>
                     </div>
@@ -183,7 +193,7 @@ export function Navbar({ setIsSidebarOpen }: { setIsSidebarOpen: Dispatch<SetSta
                       // Refresh user data when navigating to profile
                       setTimeout(() => fetchUserData(), 100);
                     }}
-                    className="flex items-center gap-3 px-4 py-3 text-gray-700 hover:bg-gray-50 transition-colors"
+                    className="flex items-center gap-3 px-4 py-3 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-slate-700 transition-colors"
                   >
                     <User className="w-4 h-4 text-teal-600" />
                     <span className="text-sm font-medium">Mon profil</span>
@@ -192,7 +202,7 @@ export function Navbar({ setIsSidebarOpen }: { setIsSidebarOpen: Dispatch<SetSta
                   <Link
                     href="/dashboard/parametres"
                     onClick={() => setIsDropdownOpen(false)}
-                    className="flex items-center gap-3 px-4 py-3 text-gray-700 hover:bg-gray-50 transition-colors"
+                    className="flex items-center gap-3 px-4 py-3 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-slate-700 transition-colors"
                   >
                     <Settings className="w-4 h-4 text-blue-600" />
                     <span className="text-sm font-medium">Paramètres</span>
@@ -200,7 +210,7 @@ export function Navbar({ setIsSidebarOpen }: { setIsSidebarOpen: Dispatch<SetSta
                 </div>
 
                 {/* Divider */}
-                <div className="border-t border-gray-200"></div>
+                <div className="border-t border-gray-200 dark:border-slate-700"></div>
 
                 {/* Sign Out */}
                 <div className="py-2">
@@ -211,7 +221,7 @@ export function Navbar({ setIsSidebarOpen }: { setIsSidebarOpen: Dispatch<SetSta
                         callbackUrl: "/auth",
                       });
                     }}
-                    className="w-full flex items-center gap-3 px-4 py-3 text-red-600 hover:bg-red-50 transition-colors"
+                    className="w-full flex items-center gap-3 px-4 py-3 text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-slate-700 transition-colors"
                   >
                     <LogOut className="w-4 h-4" />
                     <span className="text-sm font-medium">Déconnexion</span>
