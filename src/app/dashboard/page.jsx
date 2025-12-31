@@ -69,23 +69,23 @@ export default async function DashboardPage() {
 
   return (
     <DashboardLayout>
-      <div className="space-y-6 p-4 md:p-6 bg-gray-50 min-h-screen">
+      <div className="space-y-6 p-4 md:p-6 bg-gray-50 dark:bg-slate-800 min-h-screen">
         {/* Header */}
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 bg-white p-4 md:p-6 rounded-xl shadow-sm">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 bg-white dark:bg-slate-900 p-4 md:p-6 rounded-xl shadow-lg">
           <div>
             <h1 className="text-2xl md:text-3xl font-bold text-teal-600">
               Tableau de Bord
             </h1>
-            <p className="text-gray-500 mt-1">
+            <p className="text-gray-500 dark:text-gray-400 mt-1">
               Suivez votre progression et améliorez vos performances
             </p>
           </div>
-          <div className="flex items-center gap-4 bg-teal-50 p-3 rounded-xl w-full md:w-auto">
-            <div className="w-12 h-12 rounded-full border-2 border-teal-200 bg-teal-100 flex items-center justify-center">
+          <div className="flex items-center gap-4 bg-teal-50 dark:bg-teal-900/20 p-3 rounded-xl w-full md:w-auto">
+            <div className="w-12 h-12 rounded-full border-2 border-teal-200 bg-teal-100 dark:bg-teal-900/30 flex items-center justify-center">
               <Users className="w-6 h-6 text-teal-600" />
             </div>
             <div>
-              <span className="font-medium text-gray-800">
+              <span className="font-medium text-gray-800 dark:text-gray-100">
                 Bonjour, {session.user?.name || "Étudiant"}!
               </span>
               <p className="text-sm text-teal-600">
@@ -101,17 +101,17 @@ export default async function DashboardPage() {
           {stats.map((stat, index) => (
             <div
               key={index}
-              className="bg-white p-4 md:p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-all duration-300"
+              className="bg-white dark:bg-slate-900 p-4 md:p-6 rounded-xl shadow-lg border border-gray-100 dark:border-slate-700 hover:shadow-md transition-all duration-300"
             >
               <div className="flex items-center gap-4">
                 <div className="p-4 bg-gradient-to-br from-teal-50 to-blue-50 rounded-xl">
                   {stat.icon}
                 </div>
                 <div>
-                  <p className="text-2xl md:text-3xl font-bold text-gray-800">
+                  <p className="text-2xl md:text-3xl font-bold text-gray-800 dark:text-gray-100">
                     {stat.value}
                   </p>
-                  <p className="text-sm text-gray-500">{stat.label}</p>
+                  <p className="text-sm text-gray-500 dark:text-gray-400">{stat.label}</p>
                   <p className="text-xs text-teal-600 mt-1 flex items-center gap-1">
                     <TrendingUp className="w-4 h-4" /> {stat.trend}
                   </p>
@@ -150,13 +150,13 @@ export default async function DashboardPage() {
         </div>
 
         {/* Recent QCMs */}
-        <div className="bg-white p-4 md:p-6 rounded-xl shadow-sm border border-gray-100">
+        <div className="bg-white dark:bg-slate-900 p-4 md:p-6 rounded-xl shadow-lg border border-gray-100 dark:border-slate-700">
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 mb-6">
             <div>
-              <h2 className="text-xl font-semibold text-gray-800">
+              <h2 className="text-xl font-semibold text-gray-800 dark:text-gray-100">
                 Vos derniers QCMs
               </h2>
-              <p className="text-sm text-gray-500">
+              <p className="text-sm text-gray-500 dark:text-gray-400">
                 Historique de vos 3 dernières sessions
               </p>
             </div>
@@ -164,14 +164,14 @@ export default async function DashboardPage() {
           </div>
 
           {recentQcms.length === 0 ? (
-            <div className="flex flex-col items-center justify-center text-center py-10 text-gray-500">
-              <div className="w-16 h-16 bg-teal-50 rounded-full flex items-center justify-center mb-4">
+            <div className="flex flex-col items-center justify-center text-center py-10 text-gray-500 dark:text-gray-400">
+              <div className="w-16 h-16 bg-teal-50 dark:bg-teal-900/20 rounded-full flex items-center justify-center mb-4">
                 <FileText className="w-8 h-8 text-teal-600" />
               </div>
-              <h3 className="text-lg font-semibold text-gray-700 mb-2">
+              <h3 className="text-lg font-semibold text-gray-700 dark:text-gray-200 mb-2">
                 Aucun QCM enregistré
               </h3>
-              <p className="text-sm text-gray-500 max-w-md">
+              <p className="text-sm text-gray-500 dark:text-gray-400 max-w-md">
                 Vous n’avez encore participé à aucun QCM. Commencez dès maintenant pour
                 évaluer vos connaissances et suivre votre progression !
               </p>
@@ -182,7 +182,7 @@ export default async function DashboardPage() {
               {recentQcms.map((qcm, index) => (
                 <div
                   key={index}
-                  className="flex flex-col sm:flex-row items-start sm:items-center justify-between p-4 hover:bg-gray-50 rounded-xl transition-colors duration-200 border border-gray-100 gap-4"
+                  className="flex flex-col sm:flex-row items-start sm:items-center justify-between p-4 hover:bg-gray-50 dark:bg-slate-800 dark:hover:bg-slate-800 rounded-xl transition-colors duration-200 border border-gray-100 dark:border-slate-700 gap-4"
                 >
                   <div className="flex items-center gap-4">
                     <div
@@ -190,7 +190,7 @@ export default async function DashboardPage() {
                         qcm.subject === "Anatomie"
                           ? "bg-red-50"
                           : qcm.subject === "Physiologie"
-                          ? "bg-blue-50"
+                          ? "bg-blue-50 dark:bg-blue-900/20"
                           : "bg-green-50"
                       }`}
                     >
@@ -205,12 +205,12 @@ export default async function DashboardPage() {
                       />
                     </div>
                     <div>
-                      <h3 className="font-medium text-gray-800">{qcm.title}</h3>
+                      <h3 className="font-medium text-gray-800 dark:text-gray-100">{qcm.title}</h3>
                       <div className="flex flex-wrap items-center gap-2 mt-1">
-                        <span className="text-sm text-gray-500">
+                        <span className="text-sm text-gray-500 dark:text-gray-400">
                           Terminé le {qcm.date}
                         </span>
-                        <span className="text-xs px-2 py-1 rounded-full bg-gray-100 text-gray-600">
+                        <span className="text-xs px-2 py-1 rounded-full bg-gray-100 text-gray-600 dark:text-gray-400">
                           {qcm.difficulty}
                         </span>
                       </div>
@@ -243,18 +243,18 @@ function QuickActionCard({ icon, title, description, actionText, color, badge })
   const getColorClasses = (color) => {
     const classes = {
       teal: {
-        icon: "bg-teal-50 text-teal-600",
-        badge: "bg-teal-100 text-teal-600",
+        icon: "bg-teal-50 dark:bg-teal-900/20 text-teal-600",
+        badge: "bg-teal-100 dark:bg-teal-900/30 text-teal-600",
         button: "bg-teal-600 hover:bg-teal-700 text-white",
       },
       blue: {
-        icon: "bg-blue-50 text-blue-600",
-        badge: "bg-blue-100 text-blue-600",
+        icon: "bg-blue-50 dark:bg-blue-900/20 text-blue-600",
+        badge: "bg-blue-100 dark:bg-blue-900/30 text-blue-600",
         button: "bg-blue-600 hover:bg-blue-700 text-white",
       },
       purple: {
-        icon: "bg-purple-50 text-purple-600",
-        badge: "bg-purple-100 text-purple-600",
+        icon: "bg-purple-50 dark:bg-purple-900/20 text-purple-600",
+        badge: "bg-purple-100 dark:bg-purple-900/30 text-purple-600",
         button: "bg-purple-600 hover:bg-purple-700 text-white",
       },
     };
@@ -264,7 +264,7 @@ function QuickActionCard({ icon, title, description, actionText, color, badge })
   const colorClasses = getColorClasses(color);
 
   return (
-    <div className="bg-white p-4 md:p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-lg transition-all duration-300">
+    <div className="bg-white dark:bg-slate-900 p-4 md:p-6 rounded-xl shadow-lg border border-gray-100 dark:border-slate-700 hover:shadow-lg transition-all duration-300">
       <div className="flex flex-col h-full">
         <div className="flex justify-between items-start mb-4">
           <div
@@ -280,8 +280,8 @@ function QuickActionCard({ icon, title, description, actionText, color, badge })
             </span>
           )}
         </div>
-        <h3 className="font-semibold text-gray-800 text-lg">{title}</h3>
-        <p className="text-sm text-gray-500 mt-2 mb-6">{description}</p>
+        <h3 className="font-semibold text-gray-800 dark:text-gray-100 text-lg">{title}</h3>
+        <p className="text-sm text-gray-500 dark:text-gray-400 mt-2 mb-6">{description}</p>
         <button
           className={`mt-auto px-6 py-3 rounded-xl transition-all duration-300 text-sm font-medium w-full flex items-center justify-center gap-2 ${colorClasses.button}`}
         >
